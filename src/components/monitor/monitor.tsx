@@ -58,14 +58,14 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 					
 					<div className="flex flex-row justify-between mt-2">
 						<div className="flex flex-row">
-							<AudioMeter text="PGM" left={percentage(data.meteringValues.CRM_L)}
-										right={percentage(data.meteringValues.CRM_R)}
-										balance={balance(data.meteringValues.CRM_L, data.meteringValues.CRM_R)}/>
+							<AudioMeter text="PGM" left={percentage(data.meteringValues.PROG_L)}
+										right={percentage(data.meteringValues.PROG_R)}
+										balance={balance(data.meteringValues.PROG_L, data.meteringValues.PROG_R)}/>
 							
 							<div className="ml-12">
-								<AudioMeter text="CRM" left={percentage(data.meteringValues.PROG_L)}
-											right={percentage(data.meteringValues.PROG_R)}
-											balance={balance(data.meteringValues.PROG_L, data.meteringValues.PROG_R)}/>
+								<AudioMeter text="CRM" left={percentage(data.meteringValues.CRM_L)}
+											right={percentage(data.meteringValues.CRM_R)}
+											balance={balance(data.meteringValues.CRM_L, data.meteringValues.CRM_R)}/>
 							</div>
 						</div>
 						
