@@ -1,7 +1,6 @@
 import React from 'react'
 import CircularProgressBar from "@/components/clock/CircularProgressBar";
 import moment from "moment/moment";
-import 'moment/locale/en-gb';
 import {MonitoringData} from "@/types/monitor";
 
 const AudioMeter = ({ data }: {data: MonitoringData}) => {
