@@ -43,20 +43,6 @@ const PFLRow = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData
 					<PFLButton state={data.autoCueCRM} write={"pflautocrm"} text={"CRM"} />
 					<PFLButton state={data.cueAux} write={"pflaux"} text={"AUX"} />
 				</div>
-				
-				<div className="flex flex-row gap-2 justify-center pt-2">
-					<PFLStatus data={data} channelName="MIC 1" channel={0}/>
-					<PFLStatus data={data} channelName="AUX 1" channel={1}/>
-					<PFLStatus data={data} channelName="AUX 2" channel={2}/>
-					<PFLStatus data={data} channelName="VOICE 1" channel={3}/>
-				</div>
-				
-				<div className="flex flex-row gap-2 justify-center pt-2">
-					<PFLStatus data={data} channelName="MP A" channel={4}/>
-					<PFLStatus data={data} channelName="PC 1" channel={5}/>
-					<PFLStatus data={data} channelName="PC 2" channel={6}/>
-					<PFLStatus data={data} channelName="MP B" channel={7}/>
-				</div>
 			</ContainerContent>
 		</Container>
 	);

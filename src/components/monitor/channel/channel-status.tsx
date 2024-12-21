@@ -1,53 +1,64 @@
 "use client";
 
-import {useEffect, useState} from "react";
-import useWebSocket from "@/hooks/use-web-socket";
 import {MonitoringData} from "@/types/monitor";
-import {Container, ContainerContent, ContainerHeader, ContainerTitle} from "@/components/ui/container";
-import AudioMeter from "@/components/audio/audiometer";
-import {balance, percentage} from "@/lib/utils";
-import ClockComponent from "@/components/clock/ClockComponent";
-import Status from "@/components/monitor/status";
 import {Button} from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent, DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
-const ChannelStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>; channel: number; channelName: string}) => {
-	// @ts-ignore
-	const [data, setData] = useState<MonitoringData>(null);
-	
-	useEffect(() => {
-		if (!socket.socket) return;
-		
-		socket.socket.addEventListener("message", (event) => {
-			setData(JSON.parse(event.data));
-		});
-	}, [socket.socket]);
-
-	if (!data) {
-		return (
-			<Button disabled={true} variant={"secondary"} className={"w-full py-5 text-xs"}>{channelName}</Button>
-		)
-	}
-	
+const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; channel: number; channelName: string}) => {
 	function channelData() {
 		return data.faderStatuses[channel];
 	}
 	
-	function toggleChannel() {
+	function toggle() {
 		fetch("http://141.224.204.8:8082/write/" + (channel + 1) + "/toggle");
 	}
 	
+	function pfl() {
+		fetch("http://141.224.204.8:8082/pfl/" + (channel + 1));
+	}
+	
+	function controls() {
+		return (
+			<DropdownMenuContent>
+				<DropdownMenuItem onClick={pfl}>{channelData().cueActive ? "Reset CUE" : "CUE Channel"}</DropdownMenuItem>
+				<DropdownMenuItem onClick={toggle}>Channel {channelData().channelOn ? "Off" : "On"}</DropdownMenuItem>
+			</DropdownMenuContent>
+		);
+	}
+	
 	if (channelData().faderActive && channelData().channelOn) return (
-		<Button variant={"green"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
+		<DropdownMenu>
+			<DropdownMenuTrigger className="w-full">
+				<Button variant={"green"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+			</DropdownMenuTrigger>
+			{controls()}
+		</DropdownMenu>
 	)
 	
 	if (!channelData().channelOn) {
 		return (
-			<Button variant={"destructive"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
+			<DropdownMenu>
+				<DropdownMenuTrigger className="w-full">
+					<Button variant={"destructive"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+				</DropdownMenuTrigger>
+				{controls()}
+			</DropdownMenu>
 		)
 	}
 	
 	return (
-		<Button variant={"secondary"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
+		<DropdownMenu>
+			<DropdownMenuTrigger className="w-full">
+				<Button variant={"secondary"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+			</DropdownMenuTrigger>
+			{controls()}
+		</DropdownMenu>
 	);
 };
 
