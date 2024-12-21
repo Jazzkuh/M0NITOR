@@ -21,10 +21,7 @@ const CoverArt = ({trackId}: {trackId: string}) => {
 	}, [trackId]);
 	
 	if (!coverArt) return (
-		<Skeleton className="bg-accent rounded-lg" style={{
-			width: 300,
-			height: 300
-		}} />
+		<Skeleton className="bg-accent rounded-lg w-[240px] h-[240px]" />
 	)
 	
 	return (
