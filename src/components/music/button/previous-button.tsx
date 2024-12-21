@@ -10,7 +10,7 @@ const PreviousButton = ({ data }: {data: MonitoringData}) => {
 	
 	return (
 		<Button variant="ghost" onClick={toggle} className={
-			"h-16 w-16 rounded-full font-bold text-3xl hover:bg-sidebar"
+			"h-16 w-16 rounded-full font-bold text-3xl hover:bg-black/80"
 		}>
 			<TrackPreviousIcon />
 		</Button>
