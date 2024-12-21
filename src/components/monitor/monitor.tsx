@@ -22,7 +22,16 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 		});
 	}, [socket.socket]);
 
-	if (!data) return <div>Loading...</div>;
+	if (!data) return (
+		
+		<Container>
+			<ContainerContent>
+				<div className="flex justify-center items-center h-full text-muted-foreground pt-6">
+					The websocket connection is not yet established.
+				</div>
+			</ContainerContent>
+		</Container>
+	)
 	
 	return (
 		<Container>
