@@ -1,30 +1,20 @@
+import React, { useState } from "react";
 import {
-	SidebarFooter,
-	SidebarGroup,
-	SidebarGroupLabel,
-	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {DashboardIcon} from "@radix-ui/react-icons";
-import {MusicIcon} from "lucide-react";
-import {Drawer, DrawerContent, DrawerTitle, DrawerTrigger} from "@/components/ui/drawer";
-import {Button} from "@/components/ui/button";
+import { MusicIcon } from "lucide-react";
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import NowPlayingData from "@/components/music/now-playing-data";
-import React from "react";
 
 export function NavNowplaying() {
-	const pathName = usePathname();
+	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
 		<SidebarMenuItem>
-			<Drawer>
+			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
-					<SidebarMenuButton
-						isActive={pathName === "/now-playing"}
-					>
+					<SidebarMenuButton isActive={isOpen}>
 						<MusicIcon />
 						<span>Now Playing</span>
 					</SidebarMenuButton>
