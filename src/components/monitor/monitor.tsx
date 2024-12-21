@@ -8,6 +8,7 @@ import AudioMeter from "@/components/audio/audiometer";
 import {balance, percentage} from "@/lib/utils";
 import ClockComponent from "@/components/clock/ClockComponent";
 import Status from "@/components/monitor/status";
+import PFLRow from "@/components/monitor/pfl/pfl-row";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -54,8 +55,19 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 					</div>
 					
-					<div className="">
+					<div className="w-full mx-8 flex flex-col">
 						<ClockComponent data={data}/>
+						
+						<div className="pt-3">
+							{/*<div className="space-y-0.5">*/}
+							{/*	<h4 className="text-sm font-medium leading-none">PFL Options</h4>*/}
+							{/*	<p className="text-sm text-muted-foreground">*/}
+							{/*		Choose the audio source you want to listen to.*/}
+							{/*	</p>*/}
+							{/*</div>*/}
+							{/*<Separator className="my-4"/>*/}
+							<PFLRow socket={socket} />
+						</div>
 					</div>
 					
 					<div>

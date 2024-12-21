@@ -10,7 +10,7 @@ import ClockComponent from "@/components/clock/ClockComponent";
 import Status from "@/components/monitor/status";
 import {Button} from "@/components/ui/button";
 
-const ChannelStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>; channel: number; channelName: string}) => {
+const PFLStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>; channel: number; channelName: string}) => {
 	// @ts-ignore
 	const [data, setData] = useState<MonitoringData>(null);
 	
@@ -24,7 +24,7 @@ const ChannelStatus = ({socket, channel, channelName}: {socket: ReturnType<typeo
 
 	if (!data) {
 		return (
-			<Button disabled={true} variant={"secondary"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+			<Button disabled={true} variant={"secondary"}>{channelName}</Button>
 		)
 	}
 	
@@ -33,22 +33,16 @@ const ChannelStatus = ({socket, channel, channelName}: {socket: ReturnType<typeo
 	}
 	
 	function toggleChannel() {
-		fetch("http://141.224.204.8:8082/write/" + (channel + 1) + "/toggle");
+		fetch("http://141.224.204.8:8082/pfl/" + (channel + 1));
 	}
 	
-	if (channelData().faderActive && channelData().channelOn) return (
-		<Button variant={"green"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
+	if (channelData().cueActive) return (
+		<Button variant={"default"} className={"w-full text-xxs"} onClick={toggleChannel}>PFL<br/>{channelName}</Button>
 	)
 	
-	if (!channelData().channelOn) {
-		return (
-			<Button variant={"destructive"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
-		)
-	}
-	
 	return (
-		<Button variant={"secondary"} className={"w-full py-5 text-xs"} onClick={toggleChannel}>{channelName}</Button>
+		<Button variant={"secondary"} className={"w-full text-xxs"} onClick={toggleChannel}>PFL<br/>{channelName}</Button>
 	);
 };
 
-export default ChannelStatus;
+export default PFLStatus;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from "lucide-react";
 
 function shadeColor(color: string, percent: number) {
     let R = parseInt(color.substring(1, 3), 16);
@@ -87,9 +88,9 @@ const CircularProgressBar = ({
     };
     
     const labelView = (
-        <text fill={textColor} fontSize={labelFontSize} x={radius} y={radius + labelFontSize} textAnchor="middle">
+        <Text fill={textColor} fontSize={labelFontSize} x={radius} y={radius + labelFontSize} textAnchor="middle">
             {label}
-        </text>
+        </Text>
     );
     
     const textValueY = label ? radius : radius + valueFontSize / 3;
@@ -109,12 +110,12 @@ const CircularProgressBar = ({
     return (
         <svg width={radius * 2} height={radius * 2}>
             {renderDots()}
-            <text fill={textColor} fontSize={valueFontSize} x={radius} y={textValueY} textAnchor="middle">
+            <Text fill={textColor} fontSize={valueFontSize} x={radius} y={textValueY} textAnchor="middle">
                 {text}
-            </text>
-            <text fill={'#A52116'} fontSize={15} x={radius} y={textValueY + 20} textAnchor="middle">
+            </Text>
+            <Text fill={'#A52116'} fontSize={15} x={radius} y={textValueY + 20} textAnchor="middle">
                 {text2}
-            </text>
+            </Text>
             {!!label.length && labelView}
         </svg>
     );

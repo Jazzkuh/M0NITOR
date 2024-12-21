@@ -79,6 +79,11 @@ body {
   }
 }
 
+.text-xxs {
+  font-size: 0.625rem;
+  line-height: 0.8rem;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -86,79 +91,6 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@layer utilities {
-  .custom-logs-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground)) transparent;
-  }
-
-  .custom-logs-scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  .custom-logs-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .custom-logs-scrollbar::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--muted-foreground) / 0.3);
-    border-radius: 20px;
-  }
-
-  .custom-logs-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--muted-foreground) / 0.5);
-  }
-}
-
-.w-md-editor-toolbar {
-  padding-bottom: 15px !important;
-  background: #1d1f21 !important; /* Aligned with the HTML body background */
-  border-bottom: 1px solid #222325 !important; /* Similar to the block default color */
-  border-radius: 6px 6px 0px 0px !important;
-}
-
-.w-md-editor-toolbar li > button:hover,
-.w-md-editor-toolbar li > button:focus {
-  background-color: inherit !important;
-  color: #686F75 !important; /* Aligned with the text color */
-}
-
-.w-md-editor-toolbar li > button {
-  color: #686F75 !important; /* Updated to match the text color */
-}
-
-.w-md-editor-toolbar li.active > button {
-  background-color: inherit !important;
-  color: #686F75 !important; /* Consistent with hover/focus color */
-}
-
-.w-md-editor-toolbar li > button > svg {
-  height: 24px !important;
-  width: 24px !important;
-}
-
-.w-md-editor-preview {
-  box-shadow: inset 1px 0 0 0 #222325 !important; /* Aligned with the block default color */
-}
-
-.wmde-markdown {
-  background: transparent !important;
-}
-
-.w-md-editor {
-  background: #1d1f21 !important; /* Aligned with the HTML body background */
-}
-
-.w-md-editor {
-  box-shadow: 0 0 0 1px #222325, 0 0 0 #222325, 0 1px 1px #222325 !important; /* Consistent shadow color */
-  border-radius: 6px !important;
-}
-
-.wmde-markdown h1 {
-  border-bottom: 1px solid #222325 !important; /* Consistent with the block default color */
 }
 
 .meter-text {
