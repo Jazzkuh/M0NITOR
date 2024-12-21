@@ -50,7 +50,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 									{data.micOn ? (
 										<Badge variant={"destructive"} className="py-1 text-xs">MIC ON</Badge>
 									) : null}
-									<Status socket={socket}/>
+									<Status socket={socket} offset={data.micOn}/>
 								</div>
 							</div>
 						</div>
