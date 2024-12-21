@@ -24,7 +24,7 @@ const PFLStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof us
 
 	if (!data) {
 		return (
-			<Button disabled={true} variant={"secondary"}>{channelName}</Button>
+			<Button variant={"secondary"} disabled={true} className={"w-full text-xxs"}>{channelName}</Button>
 		)
 	}
 	
@@ -37,7 +37,7 @@ const PFLStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof us
 	}
 	
 	if (channelData().cueActive) return (
-		<Button variant={"default"} className={"w-full text-xxs"} onClick={toggleChannel}>PFL<br/>{channelName}</Button>
+		<Button variant={"gold"} className={"w-full text-xxs"} onClick={toggleChannel}>PFL<br/>{channelName}</Button>
 	)
 	
 	return (

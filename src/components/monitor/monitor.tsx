@@ -10,6 +10,7 @@ import ClockComponent from "@/components/clock/ClockComponent";
 import Status from "@/components/monitor/status";
 import PFLRow from "@/components/monitor/pfl/pfl-row";
 import ChannelRow from "@/components/monitor/channel/channel-row";
+import {Badge} from "@/components/ui/badge";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -45,7 +46,12 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							</div>
 							
 							<div className="pt-1.5">
-								<Status socket={socket}/>
+								<div className="flex flex-row gap-3">
+									{data.micOn ? (
+										<Badge variant={"destructive"} className="py-1 text-xs">MIC ON</Badge>
+									) : null}
+									<Status socket={socket}/>
+								</div>
 							</div>
 						</div>
 					</div>
