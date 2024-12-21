@@ -42,59 +42,38 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 	}
 	
 	return (
-		<div className="grid gap-4">
-			<Container>
-				<ContainerContent>
-					<div className="flex bg-sidebar justify-between w-full mt-2">
-						<div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full">
-							<div className="flex flex-col gap-0.5">
-								<p className="font-semibold text-2xl">Now Playing</p>
-								<p className="text-xs text-muted-foreground">
-									Detailed information about the currently playing track on Spotify.
-								</p>
-							</div>
-							
-							<div className="pt-1.5">
-								<div className="flex flex-row gap-3">
-									<Status socket={socket} offset={true}/>
-								</div>
-							</div>
-						</div>
-					</div>
+		<div className="p-6">
+			<div className="flex flex-row gap-4 mt-2">
+				<div>
+					<CoverArt trackId={data.spotify.trackId}/>
+				</div>
+				
+				<div className="flex flex-col justify-center w-full">
+					<p className="font-bold text-3xl leading-none tracking-tight">{data.spotify.track}</p>
+					<p className="text-xl text-muted-foreground">{data.spotify.artist}</p>
 					
-					<div className="flex flex-row gap-4 mt-2">
-						<div>
-							<CoverArt trackId={data.spotify.trackId}/>
+					<div className="flex flex-col mt-2">
+						<Progress value={getProgress(data.spotify.position, data.spotify.length)} className={
+							"w-[100%] bg-white/20"
+						}/>
+						<div className="flex flex-row">
+							<p className="text-muted-foreground w-full">
+								{getDuration(data.spotify.position)}
+							</p>
+							
+							<p className="text-muted-foreground">
+								{getDuration(data.spotify.length)}
+							</p>
 						</div>
 						
-						<div className="flex flex-col justify-center w-full">
-							<p className="font-bold text-3xl leading-none tracking-tight">{data.spotify.track}</p>
-							<p className="text-xl text-muted-foreground">{data.spotify.artist}</p>
-							
-							<div className="flex flex-col mt-2">
-								<Progress value={getProgress(data.spotify.position, data.spotify.length)} className={
-									"w-[100%] bg-white/20"
-								}/>
-								<div className="flex flex-row">
-									<p className="text-muted-foreground w-full">
-										{getDuration(data.spotify.position)}
-									</p>
-									
-									<p className="text-muted-foreground">
-										{getDuration(data.spotify.length)}
-									</p>
-								</div>
-								
-								<div className="flex flex-row justify-center pt-3">
-									<PreviousButton data={data}/>
-									<PlayButton data={data}/>
-									<SkipButton data={data}/>
-								</div>
-							</div>
+						<div className="flex flex-row justify-center pt-3">
+							<PreviousButton data={data}/>
+							<PlayButton data={data}/>
+							<SkipButton data={data}/>
 						</div>
 					</div>
-				</ContainerContent>
-			</Container>
+				</div>
+			</div>
 		</div>
 	);
 };

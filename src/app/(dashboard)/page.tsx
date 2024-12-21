@@ -3,6 +3,9 @@ import MonitorData from "@/components/monitor/monitor-data";
 import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import {Separator} from "@/components/ui/separator";
 import {SidebarInset, SidebarTrigger} from "@/components/ui/sidebar";
+import {Drawer, DrawerContent, DrawerTrigger} from "@/components/ui/drawer";
+import {Button} from "@/components/ui/button";
+import NowPlayingData from "@/components/music/now-playing-data";
 
 const HomePage = async () => {
 	return (
@@ -24,6 +27,11 @@ const HomePage = async () => {
 			
 			<div className="flex flex-1 flex-col p-4 pt-2">
 				<MonitorData />
+				<Drawer>
+					<DrawerContent>
+						<NowPlayingData />
+					</DrawerContent>
+				</Drawer>
 			</div>
 		</SidebarInset>
 	);
