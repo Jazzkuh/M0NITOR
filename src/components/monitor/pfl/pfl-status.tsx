@@ -1,27 +1,7 @@
-"use client";
-
-import {useEffect, useState} from "react";
-import useWebSocket from "@/hooks/use-web-socket";
 import {MonitoringData} from "@/types/monitor";
-import {Container, ContainerContent, ContainerHeader, ContainerTitle} from "@/components/ui/container";
-import AudioMeter from "@/components/audio/audiometer";
-import {balance, percentage} from "@/lib/utils";
-import ClockComponent from "@/components/clock/ClockComponent";
-import Status from "@/components/monitor/status";
 import {Button} from "@/components/ui/button";
 
-const PFLStatus = ({socket, channel, channelName}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>; channel: number; channelName: string}) => {
-	// @ts-ignore
-	const [data, setData] = useState<MonitoringData>(null);
-	
-	useEffect(() => {
-		if (!socket.socket) return;
-		
-		socket.socket.addEventListener("message", (event) => {
-			setData(JSON.parse(event.data));
-		});
-	}, [socket.socket]);
-
+const PFLStatus = ({data, channel, channelName}: {data: MonitoringData; channel: number; channelName: string}) => {
 	if (!data) {
 		return (
 			<Button variant={"secondary"} disabled={true} className={"w-full text-xxs"}>{channelName}</Button>
