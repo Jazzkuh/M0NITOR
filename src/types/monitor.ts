@@ -26,6 +26,11 @@ export type MeteringValues = {
 }
 
 export type Spotify = {
+	track: string;
+	artist: string;
+	trackId: string;
 	volume: number;
 	playing: boolean;
+	length: number;
+	position: number;
 }

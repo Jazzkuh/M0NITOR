@@ -3,10 +3,10 @@
 import {useEffect, useRef} from "react";
 import { useRouter } from "nextjs-toploader/app";
 import useWebSocket from "@/hooks/use-web-socket";
-import Monitor from "@/components/monitor/monitor";
 import {MonitoringData} from "@/types/monitor";
+import NowPlaying from "@/components/music/now-playing";
 
-const MonitorData = () => {
+const NowPlayingData = () => {
 	const router = useRouter();
 	const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const socket = useWebSocket<MonitoringData>("ws://141.224.204.8:8082/ws");
@@ -34,9 +34,9 @@ const MonitorData = () => {
 	
 	return (
 		<>
-			<Monitor socket={socket}/>
+			<NowPlaying socket={socket}/>
 		</>
 	);
 };
 
-export default MonitorData;
+export default NowPlayingData;
