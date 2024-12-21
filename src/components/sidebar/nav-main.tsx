@@ -37,9 +37,7 @@ export function NavMain() {
 					</SidebarMenuItem>
 				</SidebarMenu>
 				<SidebarMenu>
-					<SidebarMenuItem>
-						<NavNowplaying />
-					</SidebarMenuItem>
+					<NavNowplaying />
 				</SidebarMenu>
 			</SidebarGroup>
 		</>

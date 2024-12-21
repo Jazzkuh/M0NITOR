@@ -19,20 +19,21 @@ export function NavNowplaying() {
 	const pathName = usePathname();
 	
 	return (
-		<Drawer>
-			<DrawerTrigger asChild>
-				<SidebarMenuButton
-					isActive={pathName === "/now-playing"}
-					tooltip="Now Playing"
-				>
-					<MusicIcon />
-					<span>Now Playing</span>
-				</SidebarMenuButton>
-			</DrawerTrigger>
-			<DrawerTitle hidden={true}>Now Playing</DrawerTitle>
-			<DrawerContent>
-				<NowPlayingData />
-			</DrawerContent>
-		</Drawer>
+		<SidebarMenuItem>
+			<Drawer>
+				<DrawerTrigger asChild>
+					<SidebarMenuButton
+						isActive={pathName === "/now-playing"}
+					>
+						<MusicIcon />
+						<span>Now Playing</span>
+					</SidebarMenuButton>
+				</DrawerTrigger>
+				<DrawerTitle hidden={true}>Now Playing</DrawerTitle>
+				<DrawerContent>
+					<NowPlayingData />
+				</DrawerContent>
+			</Drawer>
+		</SidebarMenuItem>
 	);
 }
