@@ -34,10 +34,9 @@ const MonitorData = () => {
 	}, [socket.isConnected]);
 	
 	return (
-		<div className="grid  gap-4">
+		<>
 			<Monitor socket={socket}/>
-			<ChannelRow socket={socket}/>
-		</div>
+		</>
 	);
 };
 
