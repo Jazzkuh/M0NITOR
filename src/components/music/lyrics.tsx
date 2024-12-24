@@ -79,9 +79,11 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 						<p className="text-muted-foreground">Loading lyrics...</p>
 					</div>
 				) : noLyrics || lyrics.length === 0 ? (
-					<div className="flex justify-center items-center w-full h-full">
-						<p className="text-muted-foreground">No lyrics available for this song.</p>
-					</div>
+					data.spotify.lyrics?.split("\n").map((line, index) => (
+						<p key={`lyric-${index}`} className="text-center text-muted-foreground">
+							{line}
+						</p>
+					))
 				) : (
 					lyrics.map((line, index) => (
 						<p
