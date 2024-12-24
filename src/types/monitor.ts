@@ -12,6 +12,7 @@ export type MonitoringData = {
 	autoCueANN: boolean;
 	cueAux: boolean;
 	spotify: Spotify;
+	lights: BulbData[];
 }
 
 export type FaderStatus = {
@@ -33,4 +34,11 @@ export type Spotify = {
 	playing: boolean;
 	length: number;
 	position: number;
+	lyrics: string | null;
+}
+
+export type BulbData = {
+	name: string;
+	ip: string;
+	groups: string;
 }

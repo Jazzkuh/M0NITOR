@@ -93,6 +93,32 @@ body {
   }
 }
 
+@layer utilities {
+  .custom-lyrics-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+
+  .custom-lyrics-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-lyrics-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-lyrics-scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 20px;
+  }
+
+  .custom-lyrics-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+
 .meter-text {
   position: absolute;
   z-index: 1;

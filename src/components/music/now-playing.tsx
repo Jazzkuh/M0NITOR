@@ -1,15 +1,24 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import useWebSocket from "@/hooks/use-web-socket";
 import {MonitoringData} from "@/types/monitor";
-import {Container, ContainerContent, ContainerHeader, ContainerTitle} from "@/components/ui/container";
 import CoverArt from "@/components/music/cover-art";
 import {Progress} from "@/components/ui/progress";
 import PlayButton from "@/components/music/button/play-button";
 import SkipButton from "@/components/music/button/skip-button";
 import PreviousButton from "@/components/music/button/previous-button";
-import Status from "@/components/monitor/status";
+import Lyrics from "@/components/music/lyrics";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger
+} from "@/components/ui/dialog";
+import {Mic2, MicIcon, PhoneIcon} from "lucide-react";
+import {DialogBody} from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 
 const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -22,7 +31,7 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 			setData(JSON.parse(event.data));
 		});
 	}, [socket.socket]);
-
+	
 	if (!data) return (
 		<div className="flex flex-1 flex-col p-4 pt-0">
 			<div className="flex justify-center items-center w-full h-full">
@@ -70,6 +79,22 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 							<PreviousButton data={data}/>
 							<PlayButton data={data}/>
 							<SkipButton data={data}/>
+							<Dialog>
+								<DialogTrigger>
+									<Mic2 size={16}/>
+								</DialogTrigger>
+								<DialogContent>
+									<DialogHeader>
+										<DialogTitle>Lyrics</DialogTitle>
+										<DialogDescription>
+											Please note that lyrics are not available for all songs and may not be 100% accurate.
+										</DialogDescription>
+									</DialogHeader>
+									<DialogBody>
+										<Lyrics data={data}/>
+									</DialogBody>
+								</DialogContent>
+							</Dialog>
 						</div>
 					</div>
 				</div>
