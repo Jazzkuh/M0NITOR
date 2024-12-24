@@ -4,13 +4,11 @@ import axios from "axios";
 export const POST = async (request: Request) => {
 	const body = await request.json();
 	
-	const data = await axios.post("http://141.224.204.8:8082/lyrics", {
-		query: body.query
-	}, {
-		headers:
-			{
-				"Content-Type": "application/json"
-			}
+	const data = await axios.get(`https://spclient.wg.spotify.com/color-lyrics/v2/track/${body.query}?format=json&vocalRemoval=false&market=from_token`, {
+		headers: {
+			"app-platform": "WebPlayer",
+			"Authorization": `Bearer ${process.env.SPOTIFY_TOKEN}`
+		}
 	});
 	
 	return NextResponse.json(data.data);

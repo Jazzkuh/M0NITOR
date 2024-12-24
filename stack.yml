@@ -12,6 +12,8 @@ services:
       - 43142:3000
     networks:
       - pterodactyl_nw
+    environment:
+      SPOTIFY_TOKEN: ${SPOTIFY_TOKEN}
 networks:
   pterodactyl_nw:
     name: pterodactyl_nw
