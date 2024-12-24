@@ -54,7 +54,7 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 				);
 				
 				const containerHeight = scrollRef.current.clientHeight;
-				const centerOffset = (containerHeight - lineHeight) / 2;
+				const centerOffset = (containerHeight - lineHeight) / 3;
 				
 				const scrollY = newIndex * lineHeight - centerOffset;
 				scrollRef.current.scrollTo({
