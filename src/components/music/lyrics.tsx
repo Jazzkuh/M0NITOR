@@ -8,36 +8,36 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [lyrics, setLyrics] = useState<{ startTimeMs: number; words: string }[]>([]);
 	const [currentLyricIndex, setCurrentLyricIndex] = useState<number>(-1);
-	const [loading, setLoading] = useState<boolean>(true); // New state for loading
-	const [noLyrics, setNoLyrics] = useState<boolean>(false); // New state for no lyrics
 	
-	// Fetch lyrics data from the API on component mount
+	const [loading, setLoading] = useState<boolean>(true);
+	const [noLyrics, setNoLyrics] = useState<boolean>(false);
+	
 	useEffect(() => {
 		const fetchLyrics = async () => {
 			try {
-				setLoading(true); // Set loading to true when starting to fetch
-				setNoLyrics(false); // Reset the no lyrics state before fetching
+				setLoading(true);
+				setNoLyrics(false);
 				const response = await axios.post("/api/lyrics", {
-					query: data.spotify.trackId, // Assuming trackId or similar is passed to the API
+					query: data.spotify.trackId,
+					token: data.spotify.token,
 				});
 				
 				if (response.data.lyrics && response.data.lyrics.lines.length > 0) {
-					setLyrics(response.data.lyrics.lines); // Set lyrics if found
+					setLyrics(response.data.lyrics.lines);
 				} else {
-					setNoLyrics(true); // Set noLyrics to true if no lyrics are found
+					setNoLyrics(true);
 				}
 			} catch (error) {
 				console.error("Error fetching lyrics:", error);
-				setNoLyrics(true); // If error occurs, set noLyrics to true
+				setNoLyrics(true);
 			} finally {
-				setLoading(false); // Set loading to false once fetching is complete
+				setLoading(false);
 			}
 		};
 		
 		fetchLyrics();
 	}, [data.spotify.trackId]);
 	
-	// Sync the lyrics with the current song position
 	useEffect(() => {
 		if (lyrics.length === 0 || !data.spotify.position) return;
 		
@@ -45,16 +45,22 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 			(line) => line.startTimeMs >= data.spotify.position
 		);
 		
-		// Set the current lyric index based on position
 		if (newIndex !== -1 && newIndex !== currentLyricIndex) {
 			setCurrentLyricIndex(newIndex - 1);
-			// Perform smooth scroll
+			
 			if (scrollRef.current) {
 				const lineHeight = parseFloat(
 					getComputedStyle(scrollRef.current.firstElementChild as HTMLElement).lineHeight
 				);
-				const scrollY = (newIndex - 6) * lineHeight; // Offset for smooth scrolling
-				scrollRef.current.scrollTo({ top: scrollY, behavior: "smooth" });
+				
+				const containerHeight = scrollRef.current.clientHeight;
+				const centerOffset = (containerHeight - lineHeight) / 2;
+				
+				const scrollY = newIndex * lineHeight - centerOffset;
+				scrollRef.current.scrollTo({
+					top: scrollY,
+					behavior: "smooth",
+				});
 			}
 		}
 	}, [data.spotify.position, lyrics, currentLyricIndex]);
@@ -65,18 +71,14 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 				ref={scrollRef}
 				className="p-4 overflow-y-auto space-y-0 bg-sidebar rounded-md border border-border custom-lyrics-scrollbar"
 				style={{
-					height: "calc(16 * 1.5rem + 2rem)", // Fixed height for 16 lines
+					height: "calc(16 * 1.5rem + 2rem)",
 				}}
 			>
 				{loading ? (
 					<div className="flex justify-center items-center w-full h-full">
 						<p className="text-muted-foreground">Loading lyrics...</p>
 					</div>
-				) : noLyrics ? (
-					<div className="flex justify-center items-center w-full h-full">
-						<p className="text-muted-foreground">No lyrics available for this song.</p>
-					</div>
-				) : lyrics.length === 0 ? (
+				) : noLyrics || lyrics.length === 0 ? (
 					<div className="flex justify-center items-center w-full h-full">
 						<p className="text-muted-foreground">No lyrics available for this song.</p>
 					</div>

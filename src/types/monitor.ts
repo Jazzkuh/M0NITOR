@@ -35,6 +35,7 @@ export type Spotify = {
 	length: number;
 	position: number;
 	lyrics: string | null;
+	token: string | null;
 }
 
 export type BulbData = {
