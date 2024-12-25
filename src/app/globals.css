@@ -150,3 +150,31 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 0;
   background: #4D9640;
 }
+
+.fade-effect {
+  transition: color ease-in-out, font-weight ease-in-out, text-shadow ease-in-out;
+  color: #ffffff;
+  font-weight: bold;
+  animation: fade-in-out ease-in-out;
+  animation-fill-mode: forwards; /* Keep the final state of the animation */
+}
+
+.stay-bold {
+  color: #ffffff; /* Ensures the bold white persists */
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes fade-in-out {
+  0% {
+    color: hsl(var(--muted-foreground));
+    font-weight: bold;
+    text-shadow: none;
+  }
+  100% {
+    color: #ffffff; /* Bold white */
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); /* Add glow */
+  }
+}
+

@@ -8,6 +8,7 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [lyrics, setLyrics] = useState<{ startTimeMs: number; words: string }[]>([]);
 	const [currentLyricIndex, setCurrentLyricIndex] = useState<number>(-1);
+	const [fadeDuration, setFadeDuration] = useState<number>(0); // Animation duration
 	
 	const [loading, setLoading] = useState<boolean>(true);
 	const [noLyrics, setNoLyrics] = useState<boolean>(false);
@@ -46,21 +47,45 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 		);
 		
 		if (newIndex !== -1 && newIndex !== currentLyricIndex) {
+			const nextStartTime = lyrics[newIndex]?.startTimeMs || 0;
+			const currentStartTime = lyrics[newIndex - 1]?.startTimeMs || 0;
+			const duration = nextStartTime - currentStartTime;
+			
+			setFadeDuration(Math.min(duration, duration - 300));
 			setCurrentLyricIndex(newIndex - 1);
 			
+			// Smooth but faster scrolling logic
 			if (scrollRef.current) {
 				const lineHeight = parseFloat(
 					getComputedStyle(scrollRef.current.firstElementChild as HTMLElement).lineHeight
 				);
-				
 				const containerHeight = scrollRef.current.clientHeight;
-				const centerOffset = (containerHeight - lineHeight) / 3;
+				const centerOffset = (containerHeight - lineHeight) / 2;
 				
 				const scrollY = newIndex * lineHeight - centerOffset;
-				scrollRef.current.scrollTo({
-					top: scrollY,
-					behavior: "smooth",
-				});
+				
+				let start = scrollRef.current.scrollTop;
+				let distance = scrollY - start;
+				let duration = 250;
+				let startTime: number | null = null;
+				
+				const smoothScroll = (timestamp: number) => {
+					if (!startTime) startTime = timestamp;
+					const elapsed = timestamp - startTime;
+					const progress = Math.min(elapsed / duration, 1);
+					
+					const easedProgress = 1 - (1 - progress) * (1 - progress);
+					
+					scrollRef.current?.scrollTo({
+						top: start + distance * easedProgress,
+					});
+					
+					if (progress < 1) {
+						requestAnimationFrame(smoothScroll);
+					}
+				};
+				
+				requestAnimationFrame(smoothScroll);
 			}
 		}
 	}, [data.spotify.position, lyrics, currentLyricIndex]);
@@ -93,8 +118,13 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 						<p
 							key={`lyric-${index}`}
 							className={`text-center ${
-								currentLyricIndex === index ? "text-white font-bold" : "text-muted-foreground"
+								currentLyricIndex === index
+									? "text-white font-bold fade-effect stay-bold"
+									: "text-muted-foreground opacity-60"
 							}`}
+							style={{
+								animationDuration: currentLyricIndex === index ? `${fadeDuration}ms` : "0ms",
+							}}
 						>
 							{line.words || "\u00A0"}
 						</p>
