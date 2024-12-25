@@ -9,6 +9,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import {SpeakerIcon, VolumeIcon} from "lucide-react";
+import {SpeakerLoudIcon} from "@radix-ui/react-icons";
 
 const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; channel: number; channelName: string}) => {
 	function channelData() {
@@ -35,7 +37,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 	if (channelData().faderActive && channelData().channelOn) return (
 		<DropdownMenu>
 			<DropdownMenuTrigger className="w-full">
-				<Button variant={"green"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+				<Button variant={"green"} className={"w-full py-4 border-2 border-[#4D9640] text-xxs"}>{channelName}</Button>
 			</DropdownMenuTrigger>
 			{controls()}
 		</DropdownMenu>
@@ -45,7 +47,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger className="w-full">
-					<Button variant={"destructive"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+					<Button variant={"destructive"} className={"w-full py-4 border-2 border-destructive text-xxs"}>{channelName}</Button>
 				</DropdownMenuTrigger>
 				{controls()}
 			</DropdownMenu>
@@ -55,7 +57,9 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger className="w-full">
-				<Button variant={"secondary"} className={"w-full py-5 text-xs"}>{channelName}</Button>
+				<Button variant={"secondary"} className={`w-full py-4 border-2 text-xxs${
+					channelData().cueActive ? " border-[#4D9640]" : " border-accent"
+				}`}>{channelName}</Button>
 			</DropdownMenuTrigger>
 			{controls()}
 		</DropdownMenu>
