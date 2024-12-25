@@ -5,12 +5,8 @@ import {Button} from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent, DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import {SpeakerIcon, VolumeIcon} from "lucide-react";
-import {SpeakerLoudIcon} from "@radix-ui/react-icons";
 
 const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; channel: number; channelName: string}) => {
 	function channelData() {
