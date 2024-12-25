@@ -53,7 +53,7 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 	return (
 		<div className="p-6">
 			<div className="flex flex-row gap-4 mt-2">
-				<div>
+				<div className="flex flex-col justify-center">
 					<CoverArt trackId={data.spotify.trackId}/>
 				</div>
 				
@@ -79,24 +79,12 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 							<PreviousButton data={data}/>
 							<PlayButton data={data}/>
 							<SkipButton data={data}/>
-							<Dialog>
-								<DialogTrigger>
-									<Mic2 size={16}/>
-								</DialogTrigger>
-								<DialogContent>
-									<DialogHeader>
-										<DialogTitle>Lyrics</DialogTitle>
-										<DialogDescription>
-											Please note that lyrics are not available for all songs and may not be 100% accurate.
-										</DialogDescription>
-									</DialogHeader>
-									<DialogBody>
-										<Lyrics data={data}/>
-									</DialogBody>
-								</DialogContent>
-							</Dialog>
 						</div>
 					</div>
+				</div>
+				
+				<div>
+					<Lyrics data={data}/>
 				</div>
 			</div>
 		</div>

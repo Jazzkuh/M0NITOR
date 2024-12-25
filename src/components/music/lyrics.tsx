@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MonitoringData } from "@/types/monitor";
 import axios from "axios";
+import {load} from "signal-exit";
 
 const Lyrics = ({ data }: { data: MonitoringData }) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -54,47 +55,52 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 			setFadeDuration(Math.min(duration, duration - 300));
 			setCurrentLyricIndex(newIndex - 1);
 			
-			// Smooth but faster scrolling logic
 			if (scrollRef.current) {
-				const lineHeight = parseFloat(
-					getComputedStyle(scrollRef.current.firstElementChild as HTMLElement).lineHeight
-				);
 				const containerHeight = scrollRef.current.clientHeight;
-				const centerOffset = (containerHeight - lineHeight) / 2;
+				const currentLineElement = scrollRef.current.children[newIndex] as HTMLElement;
 				
-				const scrollY = newIndex * lineHeight - centerOffset;
-				
-				let start = scrollRef.current.scrollTop;
-				let distance = scrollY - start;
-				let duration = 250;
-				let startTime: number | null = null;
-				
-				const smoothScroll = (timestamp: number) => {
-					if (!startTime) startTime = timestamp;
-					const elapsed = timestamp - startTime;
-					const progress = Math.min(elapsed / duration, 1);
+				if (currentLineElement) {
+					const currentLineRect = currentLineElement.getBoundingClientRect();
+					const containerRect = scrollRef.current.getBoundingClientRect();
 					
-					const easedProgress = 1 - (1 - progress) * (1 - progress);
+					const currentLineCenter = currentLineRect.top + currentLineRect.height / 2;
+					const containerCenter = containerRect.top + containerHeight / 2;
 					
-					scrollRef.current?.scrollTo({
-						top: start + distance * easedProgress,
-					});
+					const scrollDistance = currentLineCenter - containerCenter;
 					
-					if (progress < 1) {
-						requestAnimationFrame(smoothScroll);
-					}
-				};
-				
-				requestAnimationFrame(smoothScroll);
+					let start = scrollRef.current.scrollTop;
+					let duration = 250;
+					let startTime: number | null = null;
+					
+					const smoothScroll = (timestamp: number) => {
+						if (!startTime) startTime = timestamp;
+						const elapsed = timestamp - startTime;
+						const progress = Math.min(elapsed / duration, 1);
+						
+						const easedProgress = 1 - (1 - progress) * (1 - progress);
+						
+						scrollRef.current?.scrollTo({
+							top: start + scrollDistance * easedProgress,
+						});
+						
+						if (progress < 1) {
+							requestAnimationFrame(smoothScroll);
+						}
+					};
+					
+					requestAnimationFrame(smoothScroll);
+				}
 			}
 		}
 	}, [data.spotify.position, lyrics, currentLyricIndex]);
+	
+	if (loading || noLyrics) return null;
 	
 	return (
 		<div className="w-full flex flex-col gap-2">
 			<div
 				ref={scrollRef}
-				className="p-4 overflow-y-auto space-y-0 bg-sidebar rounded-md border border-border custom-lyrics-scrollbar"
+				className="p-4 overflow-y-auto space-y-0 bg-background rounded-md border border-background custom-lyrics-scrollbar"
 				style={{
 					height: "calc(16 * 1.5rem + 2rem)",
 				}}
