@@ -11,6 +11,8 @@ import Status from "@/components/monitor/status";
 import PFLRow from "@/components/monitor/pfl/pfl-row";
 import ChannelRow from "@/components/monitor/channel/channel-row";
 import {Badge} from "@/components/ui/badge";
+import NowPlayingMini from "@/components/music/now-playing-mini";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -70,11 +72,22 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 						
 						<div className="w-full mx-8 flex flex-col">
-							<ClockComponent data={data}/>
-							
-							<div className="pt-3">
-								<PFLRow socket={socket} />
-							</div>
+							<Tabs defaultValue="pfl" className="w-full">
+								<TabsList className="w-full bg-sidebar">
+									<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>
+									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
+								</TabsList>
+								
+								<ClockComponent data={data}/>
+								
+								<TabsContent value="pfl">
+									<PFLRow data={data}/>
+								</TabsContent>
+								
+								<TabsContent value="nowplaying">
+									<NowPlayingMini data={data}/>
+								</TabsContent>
+							</Tabs>
 						</div>
 						
 						<div>

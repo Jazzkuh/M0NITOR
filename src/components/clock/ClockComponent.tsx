@@ -17,7 +17,7 @@ const AudioMeter = ({ data }: {data: MonitoringData}) => {
     
     return (
         <>
-            <div className="flex pt-2 mb-4 justify-center items-center">
+            <div className="flex pt-3 mb-4 justify-center items-center">
                 <CircularProgressBar
                     selectedValue={time.getSeconds()}
                     maxValue={60}

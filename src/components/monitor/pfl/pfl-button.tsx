@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 const PFLButton = ({state, write, text}: {state: boolean; write: string; text: string}) => {
 	if (!state) {
 		return (
-			<Button variant={"secondary"} className={"w-full text-xxs"} onClick={toggle}>PFL<br/>{text}</Button>
+			<Button variant={"secondary"} className={`w-full text-xxs`} onClick={toggle}>PFL<br/>{text}</Button>
 		)
 	}
 	
@@ -14,7 +14,7 @@ const PFLButton = ({state, write, text}: {state: boolean; write: string; text: s
 	}
 	
 	return (
-		<Button variant={"gold"} className={"w-full text-xxs"} onClick={toggle}>PFL<br/>{text}</Button>
+		<Button variant={"gold"} className={`w-full text-accent`} style={{fontSize: "0.625rem", lineHeight: "0.8rem"}} onClick={toggle}>PFL<br/>{text}</Button>
 	);
 };
 

@@ -9,6 +9,20 @@ export function percentage(value: number) {
 	return 100 - ((value / 55) * 100);
 }
 
+function getBrightness(hexColor: string) {
+	const r = parseInt(hexColor.slice(1, 3), 16);
+	const g = parseInt(hexColor.slice(3, 5), 16);
+	const b = parseInt(hexColor.slice(5, 7), 16);
+	
+	// Standard luminance formula
+	return 0.299 * r + 0.587 * g + 0.114 * b;
+}
+
+export function getTextColorBasedOnBackground(hexColor: string) {
+	const brightness = getBrightness(hexColor);
+	return brightness > 140 ? "text-accent" : "text-white";
+}
+
 export function balance(left: number, right: number) {
 	const leftPercentage = ((left / 55) * 100);
 	const rightPercentage = ((right / 55) * 100);

@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import {Skeleton} from "@/components/ui/skeleton";
 
-const CoverArt = ({trackId}: {trackId: string}) => {
+const CoverArt = ({trackId, width, height}: {trackId: string; width: number; height: number;}) => {
 	const [coverArt, setCoverArt] = useState<string | undefined>(undefined);
 	
 	useEffect(() => {
@@ -21,11 +21,14 @@ const CoverArt = ({trackId}: {trackId: string}) => {
 	}, [trackId]);
 	
 	if (!coverArt) return (
-		<Skeleton className="bg-accent rounded-lg w-[240px] h-[240px]" />
+		<Skeleton className={`bg-[#333333] rounded-sm`} style={{
+			width: `${width * 0.84}px`,
+			height: `${height * 0.84}px`
+		}} />
 	)
 	
 	return (
-		<Image src={coverArt} alt="Cover art" className="rounded-lg" width={300} height={300} />
+		<Image src={coverArt} alt="Cover art" width={width} height={height} className="rounded-sm" />
 	);
 };
 

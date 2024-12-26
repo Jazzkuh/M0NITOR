@@ -9,16 +9,6 @@ import PlayButton from "@/components/music/button/play-button";
 import SkipButton from "@/components/music/button/skip-button";
 import PreviousButton from "@/components/music/button/previous-button";
 import Lyrics from "@/components/music/lyrics";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger
-} from "@/components/ui/dialog";
-import {Mic2, MicIcon, PhoneIcon} from "lucide-react";
-import {DialogBody} from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 
 const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -54,7 +44,7 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 		<div className="p-6">
 			<div className="flex flex-row gap-4 mt-2">
 				<div className="flex flex-col justify-center">
-					<CoverArt trackId={data.spotify.trackId}/>
+					<CoverArt trackId={data.spotify.trackId} width={300} height={300}/>
 				</div>
 				
 				<div className="flex flex-col justify-center w-full">
