@@ -14,8 +14,8 @@ services:
       - pterodactyl_nw
     environment:
       DEAMON_API_KEY: ${DEAMON_API_KEY}
-      GITHUB_ID: ${GIT_ID}
-      GITHUB_SECRET: ${GIT_SECRET}
+      AUTH_ID: ${GIT_ID}
+      AUTH_SECRET: ${GIT_SECRET}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       NEXTAUTH_URL: ${NEXTAUTH_URL}
 networks:
