@@ -16,10 +16,10 @@ const PFLRow = ({data}: {data: MonitoringData}) => {
 			<Badge variant={"blue"} className={"w-full py-2.5 justify-center"}>PFL Options</Badge>
 			
 			<div className="flex flex-row gap-2 justify-center pt-2">
-			<PFLButton state={data.cueEnabled} write={"resetpfl"} text={"RESET"} />
-				<PFLButton state={data.autoCueANN} write={"pflautoann"} text={"RETURN"} />
-				<PFLButton state={data.autoCueCRM} write={"pflautocrm"} text={"CRM"} />
-				<PFLButton state={data.cueAux} write={"pflaux"} text={"AUX"} />
+			<PFLButton state={data.cue_enabled} write={"reset"} text={"RESET"} />
+				<PFLButton state={data.auto_cue_announcer} write={"autoann"} text={"RETURN"} />
+				<PFLButton state={data.auto_cue_crm} write={"autocrm"} text={"CRM"} />
+				<PFLButton state={data.cue_aux} write={"aux"} text={"AUX"} />
 			</div>
 		</>
 	);

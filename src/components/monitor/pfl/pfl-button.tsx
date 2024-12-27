@@ -1,6 +1,7 @@
 "use client";
 
 import {Button} from "@/components/ui/button";
+import axios from "axios";
 
 const PFLButton = ({state, write, text}: {state: boolean; write: string; text: string}) => {
 	if (!state) {
@@ -10,7 +11,9 @@ const PFLButton = ({state, write, text}: {state: boolean; write: string; text: s
 	}
 	
 	function toggle() {
-		fetch(`http://141.224.204.8:8082/write/${write}`);
+		axios.post("/api/pfl/control", {
+			value: write
+		});
 	}
 	
 	return (

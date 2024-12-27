@@ -2,10 +2,13 @@ import React from 'react'
 import {MonitoringData} from "@/types/monitor";
 import {Button} from "@/components/ui/button";
 import {PauseIcon, PlayIcon} from "@radix-ui/react-icons";
+import axios from "axios";
 
 const PlayButton = ({ data }: {data: MonitoringData}) => {
 	function toggle() {
-		fetch("http://141.224.204.8:8082/spotify/play");
+		axios.post("/api/media", {
+			action: "play"
+		});
 	}
 	
 	if (!data.spotify.playing) return (

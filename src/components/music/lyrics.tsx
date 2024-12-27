@@ -20,7 +20,7 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 				setLoading(true);
 				setNoLyrics(false);
 				const response = await axios.post("/api/lyrics", {
-					query: data.spotify.trackId,
+					query: data.spotify.track_id,
 					token: data.spotify.token,
 				});
 				
@@ -38,7 +38,7 @@ const Lyrics = ({ data }: { data: MonitoringData }) => {
 		};
 		
 		fetchLyrics();
-	}, [data.spotify.trackId]);
+	}, [data.spotify.track_id]);
 	
 	useEffect(() => {
 		if (lyrics.length === 0 || !data.spotify.position) return;

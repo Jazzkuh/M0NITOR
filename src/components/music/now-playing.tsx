@@ -44,7 +44,7 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 		<div className="p-6">
 			<div className="flex flex-row gap-4 mt-2">
 				<div className="flex flex-col justify-center">
-					<CoverArt trackId={data.spotify.trackId} width={300} height={300}/>
+					<CoverArt trackId={data.spotify.track_id} width={300} height={300}/>
 				</div>
 				
 				<div className="flex flex-col justify-center w-full">

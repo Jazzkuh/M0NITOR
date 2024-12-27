@@ -11,8 +11,8 @@ const AudioMeter = ({ data }: {data: MonitoringData}) => {
     
     function getTime(micOnTime: boolean) {
         if (!micOnTime) return data.time;
-        if (!data.micOn) return '';
-        return data.micOnTime;
+        if (!data.microphone_on) return '';
+        return data.microphone_on_time;
     }
     
     return (

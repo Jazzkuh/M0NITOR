@@ -49,10 +49,10 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							
 							<div className="pt-1.5">
 								<div className="flex flex-row gap-3">
-									{data.micOn ? (
+									{data.microphone_on ? (
 										<Badge variant={"destructive"} className="py-1 text-xs">MIC ON</Badge>
 									) : null}
-									<Status socket={socket} offset={data.micOn}/>
+									<Status socket={socket} offset={data.microphone_on}/>
 								</div>
 							</div>
 						</div>
@@ -60,14 +60,14 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 					
 					<div className="flex flex-row justify-between mt-2">
 						<div className="flex flex-row">
-							<AudioMeter text="PGM" left={percentage(data.meteringValues.PROG_L)}
-										right={percentage(data.meteringValues.PROG_R)}
-										balance={balance(data.meteringValues.PROG_L, data.meteringValues.PROG_R)}/>
+							<AudioMeter text="PGM" left={percentage(data.metering.program_left)}
+										right={percentage(data.metering.program_right)}
+										balance={balance(data.metering.program_left, data.metering.program_right)}/>
 							
 							<div className="ml-12">
-								<AudioMeter text="CRM" left={percentage(data.meteringValues.CRM_L)}
-											right={percentage(data.meteringValues.CRM_R)}
-											balance={balance(data.meteringValues.CRM_L, data.meteringValues.CRM_R)}/>
+								<AudioMeter text="CRM" left={percentage(data.metering.crm_left)}
+											right={percentage(data.metering.crm_right)}
+											balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
 							</div>
 						</div>
 						
@@ -91,9 +91,9 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 						
 						<div>
-							<AudioMeter text="PFL" left={percentage(data.meteringValues.PHONES_L)}
-										right={percentage(data.meteringValues.PHONES_R)}
-										balance={balance(data.meteringValues.PHONES_L, data.meteringValues.PHONES_R)}/>
+							<AudioMeter text="PFL" left={percentage(data.metering.phones_left)}
+										right={percentage(data.metering.phones_right)}
+										balance={balance(data.metering.phones_left, data.metering.phones_right)}/>
 						</div>
 					</div>
 				</ContainerContent>

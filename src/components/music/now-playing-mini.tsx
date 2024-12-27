@@ -21,7 +21,7 @@ const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 		<div className="rounded-lg bg-accent p-3 mt-3">
 			<div className="flex flex-row gap-4">
 				<div className="flex flex-col justify-center">
-					<CoverArt trackId={data.spotify.trackId} width={100} height={100}/>
+					<CoverArt trackId={data.spotify.track_id} width={100} height={100}/>
 				</div>
 				
 				<div className="flex flex-col justify-center w-full">

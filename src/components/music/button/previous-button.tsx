@@ -2,10 +2,13 @@ import React from 'react'
 import {MonitoringData} from "@/types/monitor";
 import {Button} from "@/components/ui/button";
 import {PauseIcon, PlayIcon, TrackNextIcon, TrackPreviousIcon} from "@radix-ui/react-icons";
+import axios from "axios";
 
 const PreviousButton = ({ data }: {data: MonitoringData}) => {
 	function toggle() {
-		fetch("http://141.224.204.8:8082/spotify/previous");
+		axios.post("/api/media", {
+			action: "previous"
+		});
 	}
 	
 	return (

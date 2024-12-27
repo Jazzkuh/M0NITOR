@@ -1,45 +1,43 @@
 export type MonitoringData = {
 	success: boolean;
-	faderStatuses: FaderStatus[];
-	meteringValues: MeteringValues;
-	micOn: boolean;
+	faders: Fader[];
+	metering: MeteringValues;
+	microphone_on: boolean;
 	time: string;
-	micOnSince: number;
-	micOnTime: string;
-	onAir: boolean;
-	cueEnabled: boolean;
-	autoCueCRM: boolean;
-	autoCueANN: boolean;
-	cueAux: boolean;
+	microphone_on_since: number;
+	microphone_on_time: string;
+	on_air: boolean;
+	cue_enabled: boolean;
+	auto_cue_crm: boolean;
+	auto_cue_announcer: boolean;
+	cue_aux: boolean;
 	spotify: Spotify;
-	lights: BulbData[];
 }
 
-export type FaderStatus = {
-	channelId: number;
-	faderActive: boolean;
-	channelOn: boolean;
-	cueActive: boolean;
+export type Fader = {
+	channel_id: number;
+	fader_active: boolean;
+	channel_on: boolean;
+	cue_active: boolean;
 }
 
 export type MeteringValues = {
-	[key: string]: number;
+	program_left: number;
+	program_right: number;
+	phones_left: number;
+	phones_right: number;
+	crm_left: number;
+	crm_right: number;
 }
 
 export type Spotify = {
 	track: string;
 	artist: string;
-	trackId: string;
+	track_id: string;
 	volume: number;
 	playing: boolean;
 	length: number;
 	position: number;
 	lyrics: string | null;
 	token: string | null;
-}
-
-export type BulbData = {
-	name: string;
-	ip: string;
-	groups: string;
 }

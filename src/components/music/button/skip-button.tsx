@@ -2,10 +2,13 @@ import React from 'react'
 import {MonitoringData} from "@/types/monitor";
 import {Button} from "@/components/ui/button";
 import {PauseIcon, PlayIcon, TrackNextIcon} from "@radix-ui/react-icons";
+import axios from "axios";
 
 const SkipButton = ({ data }: {data: MonitoringData}) => {
 	function toggle() {
-		fetch("http://141.224.204.8:8082/spotify/next");
+		axios.post("/api/media", {
+			action: "next"
+		});
 	}
 	
 	return (

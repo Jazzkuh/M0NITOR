@@ -13,7 +13,7 @@ services:
     networks:
       - pterodactyl_nw
     environment:
-      SPOTIFY_TOKEN: ${SPOTIFY_TOKEN}
+      DEAMON_API_KEY: ${DEAMON_API_KEY}
 networks:
   pterodactyl_nw:
     name: pterodactyl_nw
