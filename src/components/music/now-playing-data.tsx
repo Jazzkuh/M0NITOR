@@ -9,7 +9,7 @@ import NowPlaying from "@/components/music/now-playing";
 const NowPlayingData = () => {
 	const router = useRouter();
 	const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const socket = useWebSocket<MonitoringData>("ws://141.224.204.8:8082/ws");
+	const socket = useWebSocket<MonitoringData>("wss://deamon.jazzkuh.com/ws");
 	
 	useEffect(() => {
 		if (!socket.isConnected) {
