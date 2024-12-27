@@ -14,10 +14,10 @@ services:
       - pterodactyl_nw
     environment:
       DEAMON_API_KEY: ${DEAMON_API_KEY}
-      AUTH_ID: ${GIT_ID}
-      AUTH_SECRET: ${GIT_SECRET}
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      AUTH_ID: ${AUTH_ID}
+      AUTH_SECRET: ${AUTH_SECRET}
       NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
 networks:
   pterodactyl_nw:
     name: pterodactyl_nw
