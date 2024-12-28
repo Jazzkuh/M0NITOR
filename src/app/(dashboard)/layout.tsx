@@ -11,6 +11,7 @@ import {AppSidebar} from "@/components/sidebar/app-sidebar";
 import Providers from "@/components/providers";
 import {getAuthSession} from "@/lib/auth";
 import {redirect} from "next/navigation";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default async function RootLayout({children,}: Readonly<{ children: React
             <body className={cn("min-h-screen min-w-full text-sparky-text-primary font-sans antialiased", inter.className)}>
                 <NextTopLoader/>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-                    <Toaster position="top-center"/>
+                    <Toaster richColors position="top-center" />
                     <TooltipProvider>
                         <SidebarProvider defaultOpen={false}>
                             <AppSidebar user={session.user} />

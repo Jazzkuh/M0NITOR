@@ -13,10 +13,12 @@ import ChannelRow from "@/components/monitor/channel/channel-row";
 import {Badge} from "@/components/ui/badge";
 import NowPlayingMini from "@/components/music/now-playing-mini";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {Trigger} from "@radix-ui/react-tabs";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
 	const [data, setData] = useState<MonitoringData>(null);
+	const [activeTab, setActiveTab] = useState<string>("pfl");
 	
 	useEffect(() => {
 		if (!socket.socket) return;
@@ -33,6 +35,10 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 			</div>
 		</div>
 	)
+	
+	if (!data.spotify.playing && activeTab === "nowplaying") {
+		setActiveTab("pfl");
+	}
 	
 	return (
 		<div className="grid gap-4">
@@ -72,10 +78,13 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 						
 						<div className="w-full mx-8 flex flex-col">
-							<Tabs defaultValue="pfl" className="w-full">
+							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
 								<TabsList className="w-full bg-sidebar">
 									<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>
-									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
+									
+									{data.spotify.playing ? (
+										<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
+									) : null}
 								</TabsList>
 								
 								<ClockComponent data={data}/>
@@ -84,9 +93,11 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 									<PFLRow data={data}/>
 								</TabsContent>
 								
-								<TabsContent value="nowplaying">
-									<NowPlayingMini data={data}/>
-								</TabsContent>
+								{data.spotify.playing ? (
+									<TabsContent value="nowplaying">
+										<NowPlayingMini data={data}/>
+									</TabsContent>
+								) : null}
 							</Tabs>
 						</div>
 						

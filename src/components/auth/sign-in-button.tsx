@@ -35,7 +35,7 @@ const SignInButton = ({
     return (
         <Button
             variant="default"
-            className="w-full bg-blue-500 hover:bg-blue-500/80"
+            className="w-full text-black bg-white hover:bg-white/80"
             disabled={isLoading}
             onClick={login}
         >
