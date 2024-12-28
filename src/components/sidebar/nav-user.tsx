@@ -31,7 +31,7 @@ export function NavUser({ user }: { user: User; }) {
 						>
 							<Avatar className="h-8 w-8 rounded-lg">
 								<AvatarImage
-									src={`https://ui-avatars.com/api/?name=${user.name}&length=1&color=0a0000&background=fff`}
+									src={`https://ui-avatars.com/api/?name=${user.login}&length=1&color=0a0000&background=fff`}
 									alt={"Unknown Name"}
 								/>
 								<AvatarFallback className="rounded-lg">
@@ -39,7 +39,7 @@ export function NavUser({ user }: { user: User; }) {
 								</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-semibold">{user.name}</span>
+								<span className="truncate font-semibold">{user.login}</span>
 								<span className="truncate text-xs text-muted-foreground">
                   					{user.email}
                 				</span>
@@ -66,8 +66,8 @@ export function NavUser({ user }: { user: User; }) {
 									height={40}
 								/>
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-semibold">{user.name}</span>
-									<span className="truncate text-xs text-muted-foreground">{user.id}</span>
+									<span className="truncate font-semibold">{user.login}</span>
+									<span className="truncate text-xs text-muted-foreground">{user.email}</span>
 								</div>
 							</div>
 						</DropdownMenuLabel>

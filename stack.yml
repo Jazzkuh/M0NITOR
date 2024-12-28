@@ -18,6 +18,7 @@ services:
       AUTH_SECRET: ${AUTH_SECRET}
       NEXTAUTH_URL: ${NEXTAUTH_URL}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      ORGANIZATION_TOKEN: ${ORGANIZATION_TOKEN}
 networks:
   pterodactyl_nw:
     name: pterodactyl_nw

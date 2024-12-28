@@ -6,6 +6,7 @@ declare module "next-auth" {
    */
   export interface Profile {
     id: string;
+    login: string;
     name: string;
     avatar_url: string;
     email: string;
@@ -14,6 +15,7 @@ declare module "next-auth" {
 
   export interface User {
     id: string;
+    login: string;
     name: string;
     avatar_url: string;
     email: string;
