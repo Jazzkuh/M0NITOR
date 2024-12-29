@@ -15,7 +15,7 @@ import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,} from "@/co
 import {User} from "next-auth";
 import {signOut} from "next-auth/react";
 import Image from "next/image";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 
 export function NavUser({ user }: { user: User; }) {
 	const { isMobile } = useSidebar();
@@ -29,13 +29,9 @@ export function NavUser({ user }: { user: User; }) {
 							size="lg"
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
-							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage
-									src={`https://ui-avatars.com/api/?name=${user.login}&length=1&color=0a0000&background=fff`}
-									alt={"Unknown Name"}
-								/>
-								<AvatarFallback className="rounded-lg">
-									{("Unknown")}
+							<Avatar className="h-8 w-8 rounded-md">
+								<AvatarFallback className="rounded-md bg-primary text-xl font-semibold bg-white text-accent">
+									{user.name[0].toUpperCase()}
 								</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
