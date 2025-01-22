@@ -3,11 +3,11 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { MusicIcon } from "lucide-react";
+import {LightbulbIcon} from "lucide-react";
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
-import NowPlayingData from "@/components/music/now-playing-data";
+import HueDataComponent from "@/components/hue/hue-data";
 
-export function NavNowplaying() {
+export function NavHue() {
 	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
@@ -15,13 +15,13 @@ export function NavNowplaying() {
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
 					<SidebarMenuButton isActive={isOpen}>
-						<MusicIcon />
-						<span>Now Playing</span>
+						<LightbulbIcon />
+						<span>Lights</span>
 					</SidebarMenuButton>
 				</DrawerTrigger>
-				<DrawerTitle hidden={true}>Now Playing</DrawerTitle>
+				<DrawerTitle hidden={true}>Lights</DrawerTitle>
 				<DrawerContent>
-					<NowPlayingData />
+					<HueDataComponent />
 				</DrawerContent>
 			</Drawer>
 		</SidebarMenuItem>

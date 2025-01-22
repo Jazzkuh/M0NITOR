@@ -10,7 +10,8 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {DashboardIcon} from "@radix-ui/react-icons";
 import React from "react";
-import {NavNowplaying} from "@/components/sidebar/nav-nowplaying";
+import {NavNowPlaying} from "@/components/sidebar/nav-now-playing";
+import {NavHue} from "@/components/sidebar/nav-hue";
 
 export function NavMain() {
 	const pathName = usePathname();
@@ -33,7 +34,10 @@ export function NavMain() {
 					</SidebarMenuItem>
 				</SidebarMenu>
 				<SidebarMenu>
-					<NavNowplaying />
+					<NavNowPlaying />
+				</SidebarMenu>
+				<SidebarMenu>
+					<NavHue />
 				</SidebarMenu>
 			</SidebarGroup>
 		</>

@@ -48,15 +48,3 @@ export function balance(left: number, right: number) {
 	
 	return 50;
 }
-
-export function decimalToHex(decimal: number): string {
-	const red = (decimal >> 16) & 0xFF;
-	const green = (decimal >> 8) & 0xFF;
-	const blue = decimal & 0xFF;
-	
-	return `#${padToTwoDigits(red.toString(16))}${padToTwoDigits(green.toString(16))}${padToTwoDigits(blue.toString(16))}`;
-}
-
-function padToTwoDigits(value: string): string {
-	return value.length === 1 ? '0' + value : value;
-}

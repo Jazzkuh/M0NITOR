@@ -1,5 +1,4 @@
 import React from 'react';
-import { Progress } from "@/components/ui/progress";
 import {Separator} from "@/components/ui/separator";
 
 const AudioMeter = ({ text, left, right, balance }: { text: String, left: number, right: number, balance: number }) => {
