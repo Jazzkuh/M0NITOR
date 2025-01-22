@@ -9,7 +9,7 @@ import {HueData} from "@/types/hue";
 const HueDataComponent = () => {
 	const router = useRouter();
 	const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const socket = useWebSocket<HueData>("wss://141.224.204.8:8082/lights");
+	const socket = useWebSocket<HueData>("wss://deamon.jazzkuh.com/lights");
 	
 	useEffect(() => {
 		if (!socket.isConnected) {
