@@ -42,7 +42,7 @@ const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 						</div>
 						
 						<div>
-							<Button className="text-xs text-white hover:text-[#4D9640]" onClick={next} variant="link">
+							<Button className="text-xs text-white" onClick={next} variant="link">
 								Next song{" "}
 								<TrackNextIcon />
 							</Button>
