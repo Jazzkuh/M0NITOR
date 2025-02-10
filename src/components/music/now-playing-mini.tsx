@@ -3,6 +3,10 @@
 import {MonitoringData} from "@/types/monitor";
 import CoverArt from "@/components/music/cover-art";
 import {Progress} from "@/components/ui/progress";
+import axios from "axios";
+import {Button} from "@/components/ui/button";
+import {TrackNextIcon} from "@radix-ui/react-icons";
+import React from "react";
 
 const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 	if (!data) return null;
@@ -17,6 +21,12 @@ const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 		return minutes + ":" + (parseInt(seconds) < 10 ? '0' : '') + seconds;
 	}
 	
+	function next() {
+		axios.post("/api/media", {
+			action: "next"
+		});
+	}
+
 	return (
 		<div className="rounded-lg bg-accent p-3 mt-3">
 			<div className="flex flex-row gap-4">
@@ -25,8 +35,19 @@ const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 				</div>
 				
 				<div className="flex flex-col justify-center w-full">
-					<p className="font-bold text-xl leading-none tracking-tight">{data.spotify.track}</p>
-					<p className="text-md text-muted-foreground">{data.spotify.artist}</p>
+					<div className="flex flex-row">
+						<div className="flex flex-col w-full">
+							<p className="font-bold text-xl leading-none tracking-tight">{data.spotify.track}</p>
+							<p className="text-md text-muted-foreground">{data.spotify.artist}</p>
+						</div>
+						
+						<div>
+							<Button className="text-xs text-white hover:text-[#4D9640]" onClick={next} variant="link">
+								Next song{" "}
+								<TrackNextIcon />
+							</Button>
+						</div>
+					</div>
 					
 					<div className="flex flex-col mt-2">
 						<Progress value={getProgress(data.spotify.position, data.spotify.length)} className={

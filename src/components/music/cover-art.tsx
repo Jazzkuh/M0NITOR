@@ -22,8 +22,8 @@ const CoverArt = ({trackId, width, height}: {trackId: string; width: number; hei
 	
 	if (!coverArt) return (
 		<Skeleton className={`bg-[#333333] rounded-sm`} style={{
-			width: `${width * 0.84}px`,
-			height: `${height * 0.84}px`
+			width: `${width * 0.86}px`,
+			height: `${height * 0.85}px`
 		}} />
 	)
 	

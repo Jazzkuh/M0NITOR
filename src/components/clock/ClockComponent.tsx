@@ -32,7 +32,7 @@ const AudioMeter = ({ data }: {data: MonitoringData}) => {
             </div>
             
             <div className="flex justify-center items-center pt-1 pb-5">
-                <p className="color-text-blue text-3xl">{getDate()}</p>
+                <p className="color-text-blue text-2xl">{getDate()}</p>
             </div>
         </>
     );

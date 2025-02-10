@@ -21,6 +21,8 @@ const buttonVariants = cva(
 					"bg-[#4D9640] text-green-foreground shadow hover:bg-green/80",
 				gold:
 					"bg-[#DABE3F] text-gold-foreground shadow hover:bg-gold/80",
+				orange:
+					"bg-[#FF8510] text-orange-foreground shadow hover:bg-orange/80",
 				ghost: "hover:bg-accent hover:text-accent-foreground",
 				link: "text-primary underline-offset-4 hover:underline",
 			},

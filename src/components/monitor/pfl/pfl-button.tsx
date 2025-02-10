@@ -17,7 +17,7 @@ const PFLButton = ({state, write, text}: {state: boolean; write: string; text: s
 	}
 	
 	return (
-		<Button variant={"gold"} className={`w-full text-accent`} style={{fontSize: "0.625rem", lineHeight: "0.8rem"}} onClick={toggle}>PFL<br/>{text}</Button>
+		<Button variant={"orange"} className={`w-full text-accent`} style={{fontSize: "0.625rem", lineHeight: "0.8rem"}} onClick={toggle}>PFL<br/>{text}</Button>
 	);
 };
 
