@@ -39,7 +39,7 @@ const ChannelRow = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 					<ChannelStatus data={data} channelName="USB 1" channel={4} />
 					<ChannelStatus data={data} channelName="USB 2" channel={5} />
 					<ChannelStatus data={data} channelName="USB 3" channel={6} />
-					<ChannelStatus data={data} channelName="USB 4" channel={7} />
+					<ChannelStatus data={data} channelName="SPOTIFY" channel={7} />
 				</div>
 			</ContainerContent>
 		</Container>
