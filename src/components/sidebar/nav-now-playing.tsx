@@ -4,7 +4,7 @@ import {
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { MusicIcon } from "lucide-react";
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NowPlayingData from "@/components/music/now-playing-data";
 
 export function NavNowPlaying() {
@@ -19,7 +19,6 @@ export function NavNowPlaying() {
 						<span>Now Playing</span>
 					</SidebarMenuButton>
 				</DrawerTrigger>
-				<DrawerTitle hidden={true}>Now Playing</DrawerTitle>
 				<DrawerContent>
 					<NowPlayingData />
 				</DrawerContent>
