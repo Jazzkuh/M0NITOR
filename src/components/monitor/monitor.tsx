@@ -47,7 +47,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 					<div className="flex bg-sidebar justify-between w-full mt-2">
 						<div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full">
 							<div className="flex flex-col gap-0.5">
-								<p className="font-semibold text-2xl">Monitoring</p>
+								<p className="font-semibold text-xl">Monitoring</p>
 								<p className="text-xs text-muted-foreground">
 									Currently monitoring the audio levels of the PGM, CRM and PFL signals.
 								</p>

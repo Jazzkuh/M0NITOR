@@ -7,7 +7,7 @@ import React from "react";
 const PFLButton = ({state, write, text}: {state: boolean; write: string; text: string}) => {
 	if (!state) {
 		return (
-			<Button variant={"secondary"} className={`w-full text-xxs`} onClick={toggle}>PFL<br/>{text}</Button>
+			<Button variant={"card"} className={`w-full text-xxs`} onClick={toggle}>PFL<br/>{text}</Button>
 		)
 	}
 	
