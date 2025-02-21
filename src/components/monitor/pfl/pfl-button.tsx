@@ -2,6 +2,7 @@
 
 import {Button} from "@/components/ui/button";
 import axios from "axios";
+import React from "react";
 
 const PFLButton = ({state, write, text}: {state: boolean; write: string; text: string}) => {
 	if (!state) {

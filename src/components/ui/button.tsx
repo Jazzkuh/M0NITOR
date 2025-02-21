@@ -18,7 +18,7 @@ const buttonVariants = cva(
 				secondary:
 					"bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
 				green:
-					"bg-[#4D9640] text-green-foreground shadow hover:bg-green/80",
+					"bg-[#3cab42] text-green-foreground shadow hover:bg-green/80",
 				gold:
 					"bg-[#DABE3F] text-gold-foreground shadow hover:bg-gold/80",
 				orange:

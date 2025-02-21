@@ -127,7 +127,7 @@ body {
 }
 
 .meter-bar {
-  background-color: #4D9640;
+  background-color: #3cab42;
   position: relative;
   width: 30px;
   height: 550px;
@@ -148,7 +148,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 20px;
   width: 4px;
   border-radius: 0;
-  background: #4D9640;
+  background: #3cab42;
 }
 
 .fade-effect {

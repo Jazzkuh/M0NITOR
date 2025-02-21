@@ -18,31 +18,19 @@ const ChannelRow = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 		});
 	}, [socket.socket]);
 	
-	if (!data) return (
-		<Container>
-			<ContainerContent className="p-4">
-				<div className="flex justify-center items-center w-full h-full">
-					<p className="text-muted-foreground">The websocket connection is not yet established.</p>
-				</div>
-			</ContainerContent>
-		</Container>
-	)
+	if (!data) return;
 	
 	return (
-		<Container>
-			<ContainerContent className="p-4">
-				<div className="flex flex-row gap-4 justify-center">
-					<ChannelStatus data={data} channelName="MIC 1" channel={0} />
-					<ChannelStatus data={data} channelName="AUX 1" channel={1} />
-					<ChannelStatus data={data} channelName="AUX 2" channel={2} />
-					<ChannelStatus data={data} channelName="VOICE 1" channel={3} />
-					<ChannelStatus data={data} channelName="USB 1" channel={4} />
-					<ChannelStatus data={data} channelName="USB 2" channel={5} />
-					<ChannelStatus data={data} channelName="USB 3" channel={6} />
-					<ChannelStatus data={data} channelName="SPOTIFY" channel={7} />
-				</div>
-			</ContainerContent>
-		</Container>
+		<div className="flex flex-row gap-3 justify-center">
+			<ChannelStatus data={data} channelName="MIC 1" channel={0} />
+			<ChannelStatus data={data} channelName="AUX 1" channel={1} />
+			<ChannelStatus data={data} channelName="AUX 2" channel={2} />
+			<ChannelStatus data={data} channelName="VOICE 1" channel={3} />
+			<ChannelStatus data={data} channelName="USB 1" channel={4} />
+			<ChannelStatus data={data} channelName="USB 2" channel={5} />
+			<ChannelStatus data={data} channelName="USB 3" channel={6} />
+			<ChannelStatus data={data} channelName="SPOTIFY" channel={7} />
+		</div>
 	);
 };
 
