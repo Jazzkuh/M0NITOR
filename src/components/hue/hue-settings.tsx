@@ -48,7 +48,7 @@ const HueSettings = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitorin
 	return (
 		<div className="p-6 pt-0 flex flex-wrap gap-2">
 			{scenes.sort((a, b) => a.localeCompare(b)).map((scene, index) => (
-				<Button key={index} variant="orange" onClick={() => setScene(scene)} className="flex-auto mt-2">{scene}</Button>
+				<Button key={index} variant="default" onClick={() => setScene(scene)} className="flex-auto mt-2">{scene}</Button>
 			))}
 		</div>
 	);

@@ -21,7 +21,7 @@ const AudioMeter = ({ data }: {data: MonitoringData}) => {
                 <CircularProgressBar
                     selectedValue={time.getSeconds()}
                     maxValue={60}
-                    activeStrokeColor='#FF8510'
+                    activeStrokeColor='#62c487'
                     inactiveStrokeColor='#636363'
                     valueFontSize={30}
                     text={getTime(false)}

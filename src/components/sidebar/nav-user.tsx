@@ -30,7 +30,7 @@ export function NavUser({ user }: { user: User; }) {
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
 							<Avatar className="h-8 w-8 rounded-md">
-								<AvatarFallback className="rounded-md bg-primary text-xl font-semibold bg-white text-accent">
+								<AvatarFallback className="rounded-md text-xl font-semibold bg-primary text-accent">
 									{user.name[0].toUpperCase()}
 								</AvatarFallback>
 							</Avatar>
