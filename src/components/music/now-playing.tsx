@@ -8,7 +8,7 @@ import {Progress} from "@/components/ui/progress";
 import PlayButton from "@/components/music/button/play-button";
 import SkipButton from "@/components/music/button/skip-button";
 import PreviousButton from "@/components/music/button/previous-button";
-import Lyrics from "@/components/music/lyrics";
+// import Lyrics from "@/components/music/lyrics";
 
 const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -73,9 +73,9 @@ const NowPlaying = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 					</div>
 				</div>
 				
-				<div>
-					<Lyrics data={data}/>
-				</div>
+				{/*<div>*/}
+				{/*	<Lyrics data={data}/>*/}
+				{/*</div>*/}
 			</div>
 		</div>
 	);

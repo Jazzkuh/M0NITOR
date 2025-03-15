@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MonitoringData } from "@/types/monitor";
 import axios from "axios";
-import {load} from "signal-exit";
 
 const Lyrics = ({ data }: { data: MonitoringData }) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
