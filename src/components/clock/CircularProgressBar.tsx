@@ -98,7 +98,7 @@ const CircularProgressBar = ({
         return (
             <svg width={radius * 2} height={radius * 2}>
                 {renderDots()}
-                <text fill={textColor} fontSize={valueFontSize} x={radius} y={textValueY} textAnchor="middle">
+                <text fill={textColor} fontSize={valueFontSize} x={(radius - DOT_PADDING) / 2} y={textValueY} className="text-center">
                     {text}
                 </text>
                 {!!label.length && labelView}
@@ -109,10 +109,10 @@ const CircularProgressBar = ({
     return (
         <svg width={radius * 2} height={radius * 2}>
             {renderDots()}
-            <text fill={textColor} fontSize={valueFontSize} x={radius} y={textValueY} textAnchor="middle">
+            <text fill={textColor} fontSize={valueFontSize} x={(radius - DOT_PADDING) / 2} y={textValueY} className="text-center">
                 {text}
             </text>
-            <text fill={'#A52116'} fontSize={15} x={radius} y={textValueY + 20} textAnchor="middle">
+            <text fill={'#A52116'} fontSize={15} x={(radius - (radius / 4))} y={textValueY + 20} className="text-center">
                 {text2}
             </text>
             {!!label.length && labelView}
