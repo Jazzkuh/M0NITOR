@@ -18,7 +18,7 @@ const PFLRow = ({data}: {data: MonitoringData}) => {
 					<div className="flex flex-col justify-center w-full">
 						<div className="space-y-1">
 							<h4 className="text-sm font-medium leading-none">PFL Options</h4>
-							<p className="text-sm text-muted-foreground">
+							<p className="text-xs text-muted-foreground">
 								Select an input source to listen to.
 							</p>
 						</div>

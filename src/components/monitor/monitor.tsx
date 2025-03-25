@@ -36,10 +36,6 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 		</div>
 	)
 	
-	if (!data.spotify.playing && activeTab === "nowplaying") {
-		setActiveTab("pfl");
-	}
-	
 	return (
 		<div className="grid gap-3">
 			<Container>
@@ -81,10 +77,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
 								<TabsList className="w-full bg-sidebar">
 									<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>
-									
-									{data.spotify.playing ? (
-										<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
-									) : null}
+									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
 								</TabsList>
 								
 								<ClockComponent data={data}/>
@@ -93,11 +86,9 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 									<PFLRow data={data}/>
 								</TabsContent>
 								
-								{data.spotify.playing ? (
-									<TabsContent value="nowplaying">
-										<NowPlayingMini data={data}/>
-									</TabsContent>
-								) : null}
+								<TabsContent value="nowplaying">
+									<NowPlayingMini data={data}/>
+								</TabsContent>
 							</Tabs>
 						</div>
 						

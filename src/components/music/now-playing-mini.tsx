@@ -7,9 +7,42 @@ import axios from "axios";
 import {Button} from "@/components/ui/button";
 import {TrackNextIcon} from "@radix-ui/react-icons";
 import React from "react";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const NowPlayingMini = ({data}: {data: MonitoringData}) => {
-	if (!data) return null;
+	if (!data.spotify.playing) return (
+		<div className="rounded-lg bg-accent p-3 mt-3">
+			<div className="flex flex-row gap-4">
+				<div className="flex flex-col justify-center">
+					<CoverArt width={100} height={100} trackId={null}/>
+				</div>
+				
+				<div className="flex flex-col justify-center w-full">
+					<div className="flex flex-row">
+						<div className="flex flex-col w-full">
+							<Skeleton className="bg-[#333333] tracking-tigh w-[350px] h-[20px] rounded-full" />
+							<Skeleton className="bg-[#333333] w-[200px] h-[16px] rounded-full mt-1 mb-1" />
+						</div>
+					</div>
+					
+					<div className="flex flex-col mt-2">
+						<Progress value={0} className={
+							"w-[100%] h-1 bg-white/20"
+						}/>
+						<div className="flex flex-row">
+							<p className="text-muted-foreground w-full text-xs">
+								0:00
+							</p>
+							
+							<p className="text-muted-foreground text-xs">
+								0:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 	
 	function getProgress(current: number, max: number) {
 		return (current / max) * 100;
@@ -42,7 +75,7 @@ const NowPlayingMini = ({data}: {data: MonitoringData}) => {
 						</div>
 						
 						<div>
-							<Button className="text-xs text-primary" onClick={next} variant="ghost">
+							<Button className="text-xs text-white hover:text-white" onClick={next} variant="ghost">
 								Next song{" "}
 								<TrackNextIcon />
 							</Button>

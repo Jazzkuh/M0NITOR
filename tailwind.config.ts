@@ -21,7 +21,7 @@ export default {
   				foreground: 'hsla(var(--popover-foreground))'
   			},
   			primary: {
-  				DEFAULT: 'hsla(var(--primary))',
+  				DEFAULT: 'var(--primary)',
   				foreground: 'hsla(var(--primary-foreground))'
   			},
   			secondary: {

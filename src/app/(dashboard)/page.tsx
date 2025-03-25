@@ -1,8 +1,8 @@
 import React from "react";
-import MonitorData from "@/components/monitor/monitor-data";
 import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage} from "@/components/ui/breadcrumb";
 import {Separator} from "@/components/ui/separator";
 import {SidebarInset, SidebarTrigger} from "@/components/ui/sidebar";
+import MonitorData from "@/components/monitor/data/monitor-data";
 
 const HomePage = async () => {
 	return (
