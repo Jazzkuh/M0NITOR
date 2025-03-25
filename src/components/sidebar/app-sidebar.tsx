@@ -25,6 +25,7 @@ import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import {ChevronsUpDown, LogOut} from "lucide-react";
 import Image from "next/image";
 import {signOut} from "next-auth/react";
+import getConfig from "next/dist/build/babel/loader/get-config";
 
 interface Props extends React.ComponentProps<typeof Sidebar> {
 	user: User;
@@ -32,7 +33,7 @@ interface Props extends React.ComponentProps<typeof Sidebar> {
 
 export function AppSidebar({ ...props }: Props) {
 	return (
-		<Sidebar variant="inset" collapsible="icon">
+		<Sidebar variant="floating" collapsible="icon">
 			<SidebarHeader>
 				<SidebarMenuButton
 					size="lg"
