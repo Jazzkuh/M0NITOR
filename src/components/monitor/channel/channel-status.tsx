@@ -53,7 +53,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 	}
 	
 	return (
-		<div className="rounded-lg bg-sidebar w-full p-2 border-b-4 border-t-4" style={{
+		<div className="rounded-sm bg-sidebar w-full p-2 border-b-4 border-t-4" style={{
 			borderColor: channelData().fader_active && channelData().channel_on ? channelColor() : (channelData().fader_active ? channelColor() : "#242428")
 		}}>
 			<div className="flex flex-col items-center">
