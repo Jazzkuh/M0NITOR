@@ -13,7 +13,6 @@ import ChannelRow from "@/components/monitor/channel/channel-row";
 import {Badge} from "@/components/ui/badge";
 import NowPlayingMini from "@/components/music/now-playing-mini";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {Trigger} from "@radix-ui/react-tabs";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -27,7 +26,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 			setData(JSON.parse(event.data));
 		});
 	}, [socket.socket]);
-
+	
 	if (!data) return (
 		<div className="flex flex-1 flex-col p-4 pt-0">
 			<div className="flex justify-center items-center w-full h-full">

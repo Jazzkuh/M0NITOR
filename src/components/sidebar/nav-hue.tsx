@@ -12,10 +12,7 @@ import {
 	DrawerTitle,
 	DrawerTrigger
 } from "@/components/ui/drawer";
-import NowPlayingData from "@/components/music/now-playing-data";
 import HueSettingsData from "@/components/hue/hue-settings-data";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-import {Button} from "@/components/ui/button";
 
 export function NavHue() {
 	const [isOpen, setIsOpen] = useState(false);
