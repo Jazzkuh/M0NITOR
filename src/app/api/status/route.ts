@@ -12,7 +12,7 @@ export const GET = async (request: Request) => {
 	}
 	
 	const data = await axios.get(
-		`http://141.224.204.8:8082/status`,
+		`http://deamon.jazzkuh.com/status`,
 		{
 			headers: {
 				"X-API-Key": process.env.DEAMON_API_KEY
