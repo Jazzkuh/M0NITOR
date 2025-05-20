@@ -1,36 +1,11 @@
 import React from 'react';
 
-function shadeColor(color: string, percent: number) {
-    let R = parseInt(color.substring(1, 3), 16);
-    let G = parseInt(color.substring(3, 5), 16);
-    let B = parseInt(color.substring(5, 7), 16);
-    
-    R = parseInt(`${(R * (100 + percent)) / 100}`, 10);
-    G = parseInt(`${(G * (100 + percent)) / 100}`, 10);
-    B = parseInt(`${(B * (100 + percent)) / 100}`, 10);
-    
-    R = R < 255 ? R : 255;
-    G = G < 255 ? G : 255;
-    B = B < 255 ? B : 255;
-    
-    const RR = R.toString(16).length === 1 ? `0${R.toString(16)}` : R.toString(16);
-    const GG = G.toString(16).length === 1 ? `0${G.toString(16)}` : G.toString(16);
-    const BB = B.toString(16).length === 1 ? `0${B.toString(16)}` : B.toString(16);
-    
-    return `#${RR}${GG}${BB}`;
-}
-
 const DEFAULT_RADIUS = 60;
 const MAX_VALUE = 10;
 const SELECTED_DOT_RADIUS = 5;
 const CUSTOM_DOT_RADIUS = 4;
 const UNSELECTED_DOT_RADIUS = 2;
 const DOT_PADDING = 8; // Adjust as needed
-
-const Direction = {
-    CLOCKWISE: -1,
-    ANTI_CLOCKWISE: 1,
-};
 
 type Props = {
     maxValue?: number;
@@ -93,12 +68,13 @@ const CircularProgressBar = ({
     );
     
     const textValueY = label ? radius : radius + valueFontSize / 3;
+    const paddedDot = text?.startsWith("11:") ? (radius + DOT_PADDING) / 2 : (radius - DOT_PADDING) / 2
     
     if (text2?.length < 1) {
         return (
             <svg width={radius * 2} height={radius * 2}>
                 {renderDots()}
-                <text fill={textColor} fontSize={valueFontSize} x={(radius - DOT_PADDING) / 2} y={textValueY} className="text-center">
+                <text fill={textColor} fontSize={valueFontSize} x={paddedDot} y={textValueY} className="text-center">
                     {text}
                 </text>
                 {!!label.length && labelView}
@@ -109,7 +85,7 @@ const CircularProgressBar = ({
     return (
         <svg width={radius * 2} height={radius * 2}>
             {renderDots()}
-            <text fill={textColor} fontSize={valueFontSize} x={(radius - DOT_PADDING) / 2} y={textValueY} className="text-center">
+            <text fill={textColor} fontSize={valueFontSize} x={paddedDot} y={textValueY} className="text-center">
                 {text}
             </text>
             <text fill={'#A52116'} fontSize={15} x={(radius - (radius / 4))} y={textValueY + 20} className="text-center">
