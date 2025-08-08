@@ -17,19 +17,23 @@ import {signOut} from "next-auth/react";
 import Image from "next/image";
 import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import {NavigationMenuItem, NavigationMenuLink} from "@/components/ui/navigation-menu";
+import * as React from "react";
 
 export function NavUser({ user }: { user: User; }) {
 	return (
-		<NavigationMenuItem align={"right"}>
+		<NavigationMenuItem>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<NavigationMenuLink
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
 							<Avatar className="h-8 w-8 rounded-md">
-								<AvatarFallback className="rounded-md text-xl font-semibold bg-secondary text-white">
-									{user.name[0].toUpperCase()}
-								</AvatarFallback>
+								<Image
+									src="/logo.png"
+									alt="M0NITOR"
+									width={32}
+									height={32}
+								/>
 							</Avatar>
 						</NavigationMenuLink>
 					</DropdownMenuTrigger>

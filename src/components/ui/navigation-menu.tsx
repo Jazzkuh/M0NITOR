@@ -9,48 +9,16 @@ function NavigationMenu({
                             className,
                             children,
                             viewport = true,
-                            alignBar = "center",
-                            zones = false,
-                            edgePadding = "md",
-                            zoneGap = "md",
-                            centerAuto = true,
                             ...props
                         }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
     viewport?: boolean
-    alignBar?: "left" | "center" | "right"
-    zones?: boolean
-    edgePadding?: "none" | "sm" | "md" | "lg" | "xl"
-    zoneGap?: "none" | "sm" | "md" | "lg" | "xl"
-    centerAuto?: boolean
 }) {
-    const edgePaddingMap: Record<NonNullable<typeof edgePadding>, string> = {
-        none: "px-0",
-        sm: "px-2 sm:px-4",
-        md: "px-4 sm:px-6",
-        lg: "px-6 sm:px-8",
-        xl: "px-8 sm:px-12",
-    }
-
-    const zoneGapMap: Record<NonNullable<typeof zoneGap>, string> = {
-        none: "gap-x-0",
-        sm: "gap-x-2",
-        md: "gap-x-4 md:gap-x-8",
-        lg: "gap-x-6 md:gap-x-12",
-        xl: "gap-x-8 md:gap-x-16",
-    }
-
     return (
         <NavigationMenuPrimitive.Root
             data-slot="navigation-menu"
             data-viewport={viewport}
             className={cn(
-                zones
-                    ? "group/navigation-menu relative grid items-center w-full"
-                    : "group/navigation-menu relative flex max-w-max items-center justify-center",
-                zones && (centerAuto ? "grid-cols-[1fr_max-content_1fr]" : "grid-cols-3"),
-                zones && zoneGapMap[zoneGap],
-                zones && edgePaddingMap[edgePadding],
-                !zones && (alignBar === "center" ? "mx-auto" : alignBar === "right" ? "ml-auto" : undefined),
+                "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
                 className
             )}
             {...props}
@@ -61,44 +29,15 @@ function NavigationMenu({
     )
 }
 
-/**
- * NavigationMenuList
- *
- * New prop: `justify` — control alignment of all items in the list.
- * - "start" (links), "center" (default), "end" (rechts),
- * - "between" | "around" | "evenly" (flex utilities)
- */
 function NavigationMenuList({
                                 className,
-                                justify = "center",
-                                zone,
                                 ...props
-                            }: React.ComponentProps<typeof NavigationMenuPrimitive.List> & {
-    justify?: "start" | "center" | "end" | "between" | "around" | "evenly"
-    zone?: "left" | "center" | "right"
-}) {
-    const justifyMap: Record<NonNullable<typeof justify>, string> = {
-        start: "justify-start",
-        center: "justify-center",
-        end: "justify-end",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly",
-    }
-
-    const zoneMap: Record<NonNullable<NonNullable<typeof zone>>, string> = {
-        left: "justify-self-start col-start-1",
-        center: "justify-self-center col-start-2",
-        right: "justify-self-end col-start-3",
-    }
-
+                            }: React.ComponentProps<typeof NavigationMenuPrimitive.List>) {
     return (
         <NavigationMenuPrimitive.List
             data-slot="navigation-menu-list"
             className={cn(
-                "group flex list-none items-center gap-2",
-                justifyMap[justify],
-                zone ? zoneMap[zone] : undefined,
+                "group flex flex-1 list-none items-center justify-center gap-1",
                 className
             )}
             {...props}
@@ -106,35 +45,14 @@ function NavigationMenuList({
     )
 }
 
-/**
- * NavigationMenuItem
- *
- * New prop: `align` — push a single item to left/center/right inside the list
- * using auto margins. Works best with <NavigationMenuList justify="start"/"between">.
- * - "left"  -> adds `mr-auto`
- * - "center"-> adds `mx-auto` (place items before & after to truly center)
- * - "right" -> adds `ml-auto`
- */
 function NavigationMenuItem({
                                 className,
-                                align,
                                 ...props
-                            }: React.ComponentProps<typeof NavigationMenuPrimitive.Item> & {
-    align?: "left" | "center" | "right"
-}) {
-    const alignClass =
-        align === "right"
-            ? "ml-auto"
-            : align === "left"
-                ? "mr-auto"
-                : align === "center"
-                    ? "mx-auto"
-                    : undefined
-
+                            }: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
     return (
         <NavigationMenuPrimitive.Item
             data-slot="navigation-menu-item"
-            className={cn("relative", alignClass, className)}
+            className={cn("relative", className)}
             {...props}
         />
     )
@@ -186,7 +104,11 @@ function NavigationMenuViewport({
                                     ...props
                                 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
     return (
-        <div className={cn("absolute top-full left-0 isolate z-50 flex justify-center")}>
+        <div
+            className={cn(
+                "absolute top-full left-0 isolate z-50 flex justify-center"
+            )}
+        >
             <NavigationMenuPrimitive.Viewport
                 data-slot="navigation-menu-viewport"
                 className={cn(

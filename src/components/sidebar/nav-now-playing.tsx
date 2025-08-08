@@ -14,7 +14,7 @@ export function NavNowPlaying() {
 	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
-		<NavigationMenuItem align={"left"}>
+		<NavigationMenuItem>
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
 					<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
