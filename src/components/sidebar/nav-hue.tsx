@@ -22,7 +22,7 @@ export function NavHue() {
 		<NavigationMenuItem align={"center"}>
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
-					<NavigationMenuLink asChild className={navigationMenuTriggerStyle() + " bg-primary text-background hover:text-background rounded-full hover:bg-[#62CC8BFF]"}>
+					<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
 						<span>Hue Settings</span>
 					</NavigationMenuLink>
 				</DrawerTrigger>

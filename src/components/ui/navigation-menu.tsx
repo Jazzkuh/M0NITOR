@@ -96,7 +96,7 @@ function NavigationMenuList({
         <NavigationMenuPrimitive.List
             data-slot="navigation-menu-list"
             className={cn(
-                "group flex list-none items-center gap-4",
+                "group flex list-none items-center gap-2",
                 justifyMap[justify],
                 zone ? zoneMap[zone] : undefined,
                 className

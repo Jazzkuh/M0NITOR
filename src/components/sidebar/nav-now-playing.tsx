@@ -17,7 +17,7 @@ export function NavNowPlaying() {
 		<NavigationMenuItem align={"center"}>
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
-					<NavigationMenuLink asChild className={navigationMenuTriggerStyle() + " bg-primary text-background rounded-full hover:text-background hover:bg-[#62CC8BFF]"}>
+					<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
 						<span>Now Playing</span>
 					</NavigationMenuLink>
 				</DrawerTrigger>

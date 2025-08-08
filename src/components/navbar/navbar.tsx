@@ -32,11 +32,12 @@ const NavBar = ({ user }: {user: User}) => {
                         </AvatarFallback>
                     </Avatar>
                 </NavigationMenuItem>
+
+                <NavNowPlaying />
+                <NavHue />
             </NavigationMenuList>
 
             <NavigationMenuList zone="center" justify="center">
-                <NavNowPlaying />
-                <NavHue />
             </NavigationMenuList>
 
             <NavigationMenuList zone="right" justify="end">
