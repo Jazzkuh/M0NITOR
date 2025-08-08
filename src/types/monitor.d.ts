@@ -11,6 +11,7 @@ export type MonitoringData = {
 	auto_cue_crm: boolean;
 	auto_cue_announcer: boolean;
 	cue_aux: boolean;
+	cue_air: boolean;
 	spotify: Spotify;
 }
 

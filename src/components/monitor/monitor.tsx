@@ -53,6 +53,9 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 									{data.microphone_on ? (
 										<Badge variant={"destructive"} className="py-1 text-xs">MIC ON</Badge>
 									) : null}
+									{data.cue_air ? (
+										<Badge variant={"blue"} className="py-1 text-xs">PROCESSING ENABLED</Badge>
+									) : null}
 									<Status socket={socket} offset={data.microphone_on}/>
 								</div>
 							</div>
