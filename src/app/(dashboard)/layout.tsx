@@ -7,8 +7,6 @@ import {cn} from "@/lib/utils";
 import NextTopLoader from "nextjs-toploader";
 import {TooltipProvider} from "@/components/ui/tooltip";
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
-import {AppSidebar} from "@/components/sidebar/app-sidebar";
-import Providers from "@/components/providers";
 import {getAuthSession} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import React from "react";
