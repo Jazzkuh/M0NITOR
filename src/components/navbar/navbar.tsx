@@ -18,9 +18,9 @@ import {User} from "next-auth";
 
 const NavBar = ({ user }: {user: User}) => {
     return (
-        <NavigationMenu zones edgePadding="none" zoneGap="none" centerAuto>
+        <NavigationMenu zones edgePadding="none" zoneGap="xl" centerAuto>
             <NavigationMenuList zone="left" justify="start">
-                <NavigationMenuItem align={"center"}>
+                <NavigationMenuItem align={"left"}>
                     <Avatar className="h-8 w-8 rounded-md">
                         <AvatarFallback>
                             <Image
