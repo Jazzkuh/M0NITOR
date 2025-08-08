@@ -6,12 +6,14 @@ import {ThemeProvider} from "next-themes";
 import {cn} from "@/lib/utils";
 import NextTopLoader from "nextjs-toploader";
 import {TooltipProvider} from "@/components/ui/tooltip";
-import {SidebarProvider} from "@/components/ui/sidebar";
+import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/sidebar/app-sidebar";
 import Providers from "@/components/providers";
 import {getAuthSession} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import React from "react";
+import NavBar from "@/components/navbar/navbar";
+import MonitorData from "@/components/monitor/data/monitor-data";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,12 +39,12 @@ export default async function RootLayout({children,}: Readonly<{ children: React
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
                     <Toaster richColors position="top-center" />
                     <TooltipProvider>
-                        <SidebarProvider defaultOpen={false}>
-                            <AppSidebar user={session.user} />
-                            <Providers>
+                        <SidebarInset>
+                            <div className="flex flex-3 flex-col p-4 pt-2">
+                                <NavBar user={session.user} />
                                 {children}
-                            </Providers>
-                        </SidebarProvider>
+                            </div>
+                        </SidebarInset>
                     </TooltipProvider>
                 </ThemeProvider>
             </body>

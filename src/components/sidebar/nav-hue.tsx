@@ -13,18 +13,18 @@ import {
 	DrawerTrigger
 } from "@/components/ui/drawer";
 import HueSettingsData from "@/components/hue/hue-settings-data";
+import {NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle} from "@/components/ui/navigation-menu";
 
 export function NavHue() {
 	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
-		<SidebarMenuItem>
+		<NavigationMenuItem align={"center"}>
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
-					<SidebarMenuButton isActive={isOpen}>
-						<Lightbulb />
+					<NavigationMenuLink asChild className={navigationMenuTriggerStyle() + " bg-primary text-background hover:text-background rounded-full hover:bg-[#62CC8BFF]"}>
 						<span>Hue Settings</span>
-					</SidebarMenuButton>
+					</NavigationMenuLink>
 				</DrawerTrigger>
 				<DrawerContent>
 					<DrawerHeader>
@@ -35,6 +35,6 @@ export function NavHue() {
 					<HueSettingsData />
 				</DrawerContent>
 			</Drawer>
-		</SidebarMenuItem>
+		</NavigationMenuItem>
 	);
 }

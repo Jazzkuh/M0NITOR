@@ -1,28 +1,30 @@
 import React, { useState } from "react";
-import {
-	SidebarMenuButton,
-	SidebarMenuItem,
-} from "@/components/ui/sidebar";
 import { MusicIcon } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NowPlayingData from "@/components/music/now-playing-data";
+import {
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle
+} from "@/components/ui/navigation-menu";
+import Link from "next/link";
 
 export function NavNowPlaying() {
 	const [isOpen, setIsOpen] = useState(false);
 	
 	return (
-		<SidebarMenuItem>
+		<NavigationMenuItem align={"center"}>
 			<Drawer onOpenChange={(open) => setIsOpen(open)}>
 				<DrawerTrigger asChild>
-					<SidebarMenuButton isActive={isOpen}>
-						<MusicIcon />
+					<NavigationMenuLink asChild className={navigationMenuTriggerStyle() + " bg-primary text-background rounded-full hover:text-background hover:bg-[#62CC8BFF]"}>
 						<span>Now Playing</span>
-					</SidebarMenuButton>
+					</NavigationMenuLink>
 				</DrawerTrigger>
 				<DrawerContent>
 					<NowPlayingData />
 				</DrawerContent>
 			</Drawer>
-		</SidebarMenuItem>
+		</NavigationMenuItem>
 	);
 }

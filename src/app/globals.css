@@ -50,7 +50,7 @@ body {
     --card-foreground: 0, 0%, 98%;
     --popover: 0, 0%, 3.9%;
     --popover-foreground: 0, 0%, 98%;
-    --primary: #FFA940F9;
+    --primary: #a1fcc6;
     --primary-foreground: 16, 100%, 97.1%;
     --secondary: 240, 5%, 15%;
     --secondary-foreground: 0, 0%, 98%;
@@ -58,7 +58,7 @@ body {
     --muted-foreground: 0, 0%, 63.9%;
     --accent: 240, 5%, 15%;
     --accent-foreground: 0, 0, 20;
-    --destructive: 0, 62.8%, 30.6%;
+    --destructive: #ea3b49;
     --destructive-foreground: 0, 0%, 98%;
     --border: 0, 0%, 14.9%;
     --input: 0, 0%, 14.9%;
@@ -127,7 +127,7 @@ body {
 }
 
 .meter-bar {
-  background-color: #3cab42;
+  background-color: #68e178;
   position: relative;
   width: 30px;
   height: 550px;
@@ -148,7 +148,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 20px;
   width: 4px;
   border-radius: 0;
-  background: #3cab42;
+  background: #68e178;
 }
 
 .fade-effect {

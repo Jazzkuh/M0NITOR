@@ -16,36 +16,26 @@ import {User} from "next-auth";
 import {signOut} from "next-auth/react";
 import Image from "next/image";
 import {Avatar, AvatarFallback} from "@/components/ui/avatar";
+import {NavigationMenuItem, NavigationMenuLink} from "@/components/ui/navigation-menu";
 
 export function NavUser({ user }: { user: User; }) {
-	const { isMobile } = useSidebar();
-	
 	return (
-		<SidebarMenu>
-			<SidebarMenuItem>
+		<NavigationMenuItem align={"right"}>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton
-							size="lg"
+						<NavigationMenuLink
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
 							<Avatar className="h-8 w-8 rounded-md">
-								<AvatarFallback className="rounded-md text-xl font-semibold bg-primary text-accent">
+								<AvatarFallback className="rounded-md text-xl font-semibold bg-secondary text-white">
 									{user.name[0].toUpperCase()}
 								</AvatarFallback>
 							</Avatar>
-							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-semibold">{user.login}</span>
-								<span className="truncate text-xs text-muted-foreground">
-                  					{user.email}
-                				</span>
-							</div>
-							<ChevronsUpDown className="ml-auto size-4" />
-						</SidebarMenuButton>
+						</NavigationMenuLink>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-						side={isMobile ? "bottom" : "right"}
+						side={"bottom"}
 						align="end"
 						sideOffset={4}
 					>
@@ -79,7 +69,6 @@ export function NavUser({ user }: { user: User; }) {
 						</DropdownMenuGroup>
 					</DropdownMenuContent>
 				</DropdownMenu>
-			</SidebarMenuItem>
-		</SidebarMenu>
+		</NavigationMenuItem>
 	);
 }

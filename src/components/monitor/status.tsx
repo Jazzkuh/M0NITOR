@@ -8,14 +8,14 @@ const Status = ({socket, offset}: {socket: any, offset: boolean}) => {
 			<TooltipTrigger>
 				<div
 					style={{
-						backgroundColor: socket.isConnecting ? "#ff753f" : socket.isConnected ? "#4CAF50" : "#F44336",
+						backgroundColor: socket.isConnecting ? "#fd9c2d" : socket.isConnected ? "#68e178" : "#ea3b49",
 						marginTop: !offset ? "5px" : "0",
 					}}
 					className={"rounded-full h-4 w-4 animate-pulse"}
 				/>
 			</TooltipTrigger>
 			<TooltipContent style={{
-				backgroundColor: socket.isConnecting ? "#ff753f" : socket.isConnected ? "#4CAF50" : "#F44336",
+				backgroundColor: socket.isConnecting ? "#fd9c2d" : socket.isConnected ? "#68e178" : "#ea3b49",
 			}}>
 				{socket.isConnecting
 					? "Connecting"

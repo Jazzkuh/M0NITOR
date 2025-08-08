@@ -36,7 +36,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 	)
 	
 	return (
-		<div className="grid gap-3">
+		<div className="grid gap-3 pt-2">
 			<Container>
 				<ContainerContent>
 					<div className="flex bg-sidebar justify-between w-full mt-2">
@@ -50,13 +50,15 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							
 							<div className="pt-1.5">
 								<div className="flex flex-row gap-3">
-									{data.microphone_on ? (
-										<Badge variant={"destructive"} className="py-1 text-xs">MIC ON</Badge>
-									) : null}
-									{data.cue_air ? (
-										<Badge variant={"blue"} className="py-1 text-xs">PROCESSING ENABLED</Badge>
-									) : null}
-									<Status socket={socket} offset={data.microphone_on}/>
+									<div className="flex flex-row gap-2">
+										{data.microphone_on ? (
+											<Badge variant={"destructive"} className="py-1 text-xs">Mic On</Badge>
+										) : null}
+										{data.cue_air ? (
+											<Badge variant={"blue"} className="py-1 text-xs">StereoTool Processing</Badge>
+										) : null}
+									</div>
+									<Status socket={socket} offset={data.microphone_on || data.cue_air}/>
 								</div>
 							</div>
 						</div>

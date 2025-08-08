@@ -30,10 +30,10 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 	
 	function channelColor() {
 		if (channel == 0 || channel == 2) {
-			return "#cd2d25";
+			return "#ea3b49";
 		}
 		
-		return "#3cab42";
+		return "#68e178";
 	}
 	
 	function getColor(channelOn: boolean, faderActive: boolean) {
@@ -46,7 +46,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 		}
 		
 		if (!channelOn) {
-			return "#cd2d25";
+			return "#ea3b49";
 		}
 		
 		return "#242428";
@@ -60,7 +60,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 				<p className="text-xs text-muted-foreground pb-2">{channelName}</p>
 				<div className="flex flex-row gap-2">
 					<Button onClick={pfl} className="text-xxs" style={{
-						backgroundColor: channelData().cue_active ? "#3cab42" : "#242428"
+						backgroundColor: channelData().cue_active ? "#68e178" : "#242428"
 					}}>PFL</Button>
 					<Button onClick={toggle} className="text-xxs" style={{
 						backgroundColor: getColor(channelData().channel_on, channelData().fader_active)

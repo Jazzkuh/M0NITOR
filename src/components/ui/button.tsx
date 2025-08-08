@@ -20,7 +20,7 @@ const buttonVariants = cva(
 				card:
 					"bg-card text-secondary-foreground shadow-sm hover:bg-card/80",
 				green:
-					"bg-[#3cab42] text-green-foreground shadow hover:bg-green/80",
+					"bg-[#68e178] text-green-foreground shadow hover:bg-green/80",
 				gold:
 					"bg-[#DABE3F] text-gold-foreground shadow hover:bg-gold/80",
 				orange:
