@@ -81,10 +81,10 @@ const AudioMeter = ({ text, left, right, balance }: { text: String, left: number
 				{getSeparator(416.6)}
 				
 				<div className="meter-bar" style={{ width: 24, height: 440, marginBottom: 15 }}>
-					<div className="meter-background bg-accent" style={{ height: left + "%" }} />
+					<div className="meter-background bg-accent" style={{ height: left + "%", transition: "height 0.08s ease-in-out" }} />
 				</div>
 				<div className="meter-bar" style={{ width: 24, height: 440, marginLeft: 40 }}>
-					<div className="meter-background bg-accent" style={{ height: right + "%" }} />
+					<div className="meter-background bg-accent" style={{ height: right + "%", transition: "height 0.08s ease-in-out" }} />
 				</div>
 			</div>
 			

@@ -45,12 +45,24 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 			return "#242428";
 		}
 		
-		if (!channelOn) {
-			return "#ea3b49";
-		}
-		
 		return "#242428";
 	}
+
+    function getText(channelOn: boolean, faderActive: boolean) {
+        if (channelOn && faderActive) {
+            return "ON";
+        }
+
+        if (faderActive && !channelOn) {
+            return "OFF";
+        }
+
+        if (!channelOn) {
+            return "OFF";
+        }
+
+        return "ON";
+    }
 	
 	return (
 		<div className="rounded-sm bg-sidebar w-full p-2 border-b-4 border-t-4" style={{
@@ -64,7 +76,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 					}}>PFL</Button>
 					<Button onClick={toggle} className="text-xxs" style={{
 						backgroundColor: getColor(channelData().channel_on, channelData().fader_active)
-					}}>ON</Button>
+					}}>{getText(channelData().channel_on, channelData().fader_active)}</Button>
 				</div>
 			</div>
 		</div>
