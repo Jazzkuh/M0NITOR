@@ -25,11 +25,11 @@ const ChannelRow = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 			<ChannelStatus data={data} channelName="Mic 1" channel={0} />
 			<ChannelStatus data={data} channelName="Aux 1" channel={1} />
 			<ChannelStatus data={data} channelName="Aux 2" channel={2} />
-			<ChannelStatus data={data} channelName="USB 1" channel={3} />
-			<ChannelStatus data={data} channelName="USB 2" channel={4} />
-			<ChannelStatus data={data} channelName="USB 3" channel={5} />
-			<ChannelStatus data={data} channelName="Spotify" channel={6} />
-			<ChannelStatus data={data} channelName="Voice 1" channel={7} />
+			<ChannelStatus data={data} channelName="Voice 1" channel={3} />
+			<ChannelStatus data={data} channelName="USB 1" channel={4} />
+			<ChannelStatus data={data} channelName="USB 2" channel={5} />
+			<ChannelStatus data={data} channelName="USB 3" channel={6} />
+			<ChannelStatus data={data} channelName="USB 4" channel={7} />
 		</div>
 	);
 };
