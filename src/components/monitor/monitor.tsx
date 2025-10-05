@@ -3,7 +3,7 @@
 import {useEffect, useState} from "react";
 import useWebSocket from "@/hooks/use-web-socket";
 import {MonitoringData} from "@/types/monitor";
-import {Container, ContainerContent, ContainerHeader, ContainerTitle} from "@/components/ui/container";
+import {Container, ContainerContent} from "@/components/ui/container";
 import AudioMeter from "@/components/audio/audiometer";
 import {balance, percentage} from "@/lib/utils";
 import ClockComponent from "@/components/clock/ClockComponent";
@@ -37,7 +37,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 	
 	return (
 		<div className="grid gap-3 pt-2">
-			<Container>
+			<Container className="h-full">
 				<ContainerContent>
 					<div className="flex bg-sidebar justify-between w-full mt-2">
 						<div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full">
@@ -104,8 +104,8 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 					</div>
 				</ContainerContent>
 			</Container>
-			
-			<ChannelRow socket={socket}/>
+
+            <ChannelRow socket={socket}/>
 		</div>
 	);
 };

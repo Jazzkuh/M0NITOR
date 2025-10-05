@@ -47,36 +47,28 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 		
 		return "#242428";
 	}
-
-    function getText(channelOn: boolean, faderActive: boolean) {
-        if (channelOn && faderActive) {
-            return "ON";
-        }
-
-        if (faderActive && !channelOn) {
-            return "OFF";
-        }
-
-        if (!channelOn) {
-            return "OFF";
-        }
-
-        return "ON";
-    }
 	
 	return (
 		<div className="rounded-sm bg-sidebar w-full p-2 border-b-4 border-t-4" style={{
 			borderColor: channelData().fader_active && channelData().channel_on ? channelColor() : (channelData().fader_active ? channelColor() : "#242428")
 		}}>
 			<div className="flex flex-col items-center">
-				<p className="text-xs text-muted-foreground pb-2">{channelName}</p>
+				<p className="text-xs text-muted-foreground pb-1">{channelName}</p>
+                <div className="pb-3">
+                    {channelData().channel_on ? (
+                        <Badge variant={"green"} className="py-1 text-xs">Channel On</Badge>
+                    ) :
+                        <Badge variant={"destructive"} className="py-1 text-xs">Channel Off</Badge>
+                    }
+                </div>
+
 				<div className="flex flex-row gap-2">
 					<Button onClick={pfl} className="text-xxs" style={{
 						backgroundColor: channelData().cue_active ? "#68e178" : "#242428"
 					}}>PFL</Button>
 					<Button onClick={toggle} className="text-xxs" style={{
 						backgroundColor: getColor(channelData().channel_on, channelData().fader_active)
-					}}>{getText(channelData().channel_on, channelData().fader_active)}</Button>
+					}}>ON</Button>
 				</div>
 			</div>
 		</div>

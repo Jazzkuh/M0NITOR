@@ -21,10 +21,7 @@ const CoverArt = ({trackId, width, height}: {trackId: string | null; width: numb
 	}, [trackId]);
 	
 	if (!coverArt || !trackId) return (
-		<Skeleton className={`bg-[#333333] rounded-sm`} style={{
-			width: `${width * 0.84}px`,
-			height: `${height * 0.84}px`
-		}} />
+        <Image src={`/skeleton.png`} alt="Cover art" width={width} height={height} className="rounded-sm" />
 	)
 	
 	return (

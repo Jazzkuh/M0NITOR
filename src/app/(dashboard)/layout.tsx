@@ -39,7 +39,6 @@ export default async function RootLayout({children,}: Readonly<{ children: React
                     <TooltipProvider>
                         <SidebarInset>
                             <div className="flex flex-3 flex-col p-4 pt-2">
-                                <NavBar user={session.user} />
                                 {children}
                             </div>
                         </SidebarInset>
