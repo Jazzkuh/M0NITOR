@@ -13,6 +13,17 @@ import ChannelRow from "@/components/monitor/channel/channel-row";
 import {Badge} from "@/components/ui/badge";
 import NowPlayingMini from "@/components/music/now-playing-mini";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {Avatar} from "@/components/ui/avatar";
+import Image from "next/image";
+import * as React from "react";
+import {
+    DropdownMenu,
+    DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import {signOut} from "next-auth/react";
+import {LogOut} from "lucide-react";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -41,12 +52,46 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 				<ContainerContent>
 					<div className="flex bg-sidebar justify-between w-full mt-2">
 						<div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full">
-							<div className="flex flex-col gap-0.5">
-								<p className="font-semibold text-xl">Monitoring</p>
-								<p className="text-xs text-muted-foreground">
-									Currently monitoring the audio levels of the PGM, CRM and PFL signals.
-								</p>
-							</div>
+                            <div className="flex flex-row gap-2">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Avatar className="h-8 w-8 rounded-md">
+                                            <Image
+                                                src="/logo.png"
+                                                alt="M0NITOR"
+                                                width={32}
+                                                height={32}
+                                            />
+                                        </Avatar>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent
+                                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                                        side={"bottom"}
+                                        align={"start"}
+                                        sideOffset={4}
+                                    >
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuLabel className="text-sm text-muted-foreground">
+                                                Account
+                                            </DropdownMenuLabel>
+                                            <DropdownMenuItem
+                                                className="cursor-pointer"
+                                                onClick={() => signOut()}
+                                            >
+                                                <LogOut className="pr-2" />
+                                                Log out
+                                            </DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+
+                                <div className="flex flex-col gap-0.5">
+                                    <p className="font-semibold text-xl">M0NITOR</p>
+                                    <p className="text-xs text-muted-foreground">
+                                        Currently monitoring the audio levels of the PGM, CRM and PFL signals.
+                                    </p>
+                                </div>
+                            </div>
 							
 							<div className="pt-1.5">
 								<div className="flex flex-row gap-3">
