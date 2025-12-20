@@ -39,4 +39,6 @@ export type Spotify = {
 	playing: boolean;
 	length: number;
 	position: number;
+	lyrics: string | null;
+	token: string | null;
 }
