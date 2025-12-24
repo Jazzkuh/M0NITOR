@@ -48,7 +48,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 	)
 	
 	return (
-		<div className="grid gap-3 pt-2">
+		<div className="grid gap-2 pt-2">
 			<Container className="h-full">
 				<ContainerContent>
 					<div className="flex bg-sidebar justify-between w-full mt-2">
