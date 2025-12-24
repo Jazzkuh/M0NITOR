@@ -56,17 +56,17 @@ const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}
 				<p className="text-xs text-muted-foreground pb-1">{channelData().name}</p>
                 <div className="pb-3">
                     {channelData().channel_on ? (
-                        <Badge variant={"green"} className="py-1 text-xs">Channel On</Badge>
+                        <Badge variant={"green"} className="py-1 text-xs">Active</Badge>
                     ) :
-                        <Badge variant={"destructive"} className="py-1 text-xs">Channel Off</Badge>
+                        <Badge variant={"destructive"} className="py-1 text-xs">Inactive</Badge>
                     }
                 </div>
 
 				<div className="flex flex-row gap-2">
-					<Button onClick={pfl} className="text-xxs" style={{
+					<Button onClick={pfl} size="xs" style={{
 						backgroundColor: channelData().cue_active ? "#68e178" : "#242428"
 					}}>PFL</Button>
-					<Button onClick={toggle} className="text-xxs" style={{
+					<Button onClick={toggle} size="xs" style={{
 						backgroundColor: getColor(channelData().channel_on, channelData().fader_active)
 					}}>ON</Button>
 				</div>
