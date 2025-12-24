@@ -29,10 +29,10 @@ const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}
 	}
 	
 	function channelColor() {
-		if (channel == 0 || channel == 2) {
-			return "#ea3b49";
-		}
-		
+		// if (channel == 0) {
+		// 	return "#ea3b49";
+		// }
+		//
 		return "#68e178";
 	}
 	
