@@ -127,7 +127,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
 								<TabsList className="w-full bg-sidebar">
 									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>*/}
-									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
+									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>*/}
 								</TabsList>
 								
 								<ClockComponent data={data}/>
