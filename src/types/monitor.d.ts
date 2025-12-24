@@ -16,6 +16,7 @@ export type MonitoringData = {
 }
 
 export type Fader = {
+    name: string;
 	channel_id: number;
 	fader_active: boolean;
 	channel_on: boolean;

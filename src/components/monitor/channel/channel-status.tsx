@@ -11,7 +11,7 @@ import axios from "axios";
 import React from "react";
 import {Badge} from "@/components/ui/badge";
 
-const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; channel: number; channelName: string}) => {
+const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}) => {
 	function channelData() {
 		return data.faders[channel];
 	}
@@ -53,7 +53,7 @@ const ChannelStatus = ({data, channel, channelName}: {data: MonitoringData; chan
 			borderColor: channelData().fader_active && channelData().channel_on ? channelColor() : (channelData().fader_active ? channelColor() : "#242428")
 		}}>
 			<div className="flex flex-col items-center">
-				<p className="text-xs text-muted-foreground pb-1">{channelName}</p>
+				<p className="text-xs text-muted-foreground pb-1">{channelData().name}</p>
                 <div className="pb-3">
                     {channelData().channel_on ? (
                         <Badge variant={"green"} className="py-1 text-xs">Channel On</Badge>

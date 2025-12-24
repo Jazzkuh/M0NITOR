@@ -29,7 +29,7 @@ import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
 	const [data, setData] = useState<MonitoringData>(null);
-	const [activeTab, setActiveTab] = useState<string>("clock");
+	const [activeTab, setActiveTab] = useState<string>("nowplaying");
 	
 	useEffect(() => {
 		if (!socket.socket) return;
@@ -40,89 +40,10 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 	}, [socket.socket]);
 
 	if (!data) return (
-        <div className="grid gap-3 pt-2">
-            <Container className="h-full">
-                <ContainerContent>
-                    <div className="flex bg-sidebar justify-between w-full mt-2">
-                        <div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full ">
-                            <div className="flex flex-row gap-2">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Avatar className="h-8 w-8 rounded-md">
-                                            <Image
-                                                src="/logo.png"
-                                                alt="M0NITOR"
-                                                width={32}
-                                                height={32}
-                                            />
-                                        </Avatar>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent
-                                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                                        side={"bottom"}
-                                        align={"start"}
-                                        sideOffset={4}
-                                    >
-                                        <DropdownMenuGroup>
-                                            <DropdownMenuLabel className="text-sm text-muted-foreground">
-                                                Account
-                                            </DropdownMenuLabel>
-                                            <DropdownMenuItem
-                                                className="cursor-pointer"
-                                                onClick={() => signOut()}
-                                            >
-                                                <LogOut className="pr-2" />
-                                                Log out
-                                            </DropdownMenuItem>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-
-                                <div className="flex flex-col gap-0.5">
-                                    <p className="font-semibold text-xl">M0NITOR</p>
-                                    <p className="text-xs text-muted-foreground">
-                                        Currently not connected to the websocket server.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="pt-1.5">
-                            <div className="flex flex-row gap-3">
-                                <div className="flex flex-row gap-2">
-                                    <Tooltip>
-                                        <TooltipTrigger>
-                                            <div
-                                                style={{
-                                                    backgroundColor: "#ea3b49",
-                                                    marginTop: "0",
-                                                }}
-                                                className={"rounded-full h-4 w-4 animate-pulse"}
-                                            />
-                                        </TooltipTrigger>
-                                        <TooltipContent style={{
-                                            backgroundColor: "#ea3b49",
-                                        }}>Disconnected
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-row justify-between mt-2">
-                        <div className="w-full mx-8 flex flex-col">
-                            <Tabs defaultValue="clock" value={activeTab} onValueChange={setActiveTab} className="w-full">
-                                <TabsList className="w-full bg-sidebar">
-                                    <TabsTrigger className="data-[state=active]:bg-accent" value="clock">Clock</TabsTrigger>
-                                </TabsList>
-
-                                <ClockComponent data={data}/>
-                            </Tabs>
-                        </div>
-                    </div>
-                </ContainerContent>
-            </Container>
+        <div>
+            <div className="flex justify-center items-center w-full h-full">
+                <p className="text-muted-foreground">The websocket connection is not yet established.</p>
+            </div>
         </div>
 	)
 	
@@ -205,7 +126,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						<div className="w-full mx-8 flex flex-col">
 							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
 								<TabsList className="w-full bg-sidebar">
-									<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>
+									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>*/}
 									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
 								</TabsList>
 								
