@@ -34,7 +34,7 @@ const AudioMeter = ({ text, left, right, balance }: { text: String, left: number
     }
 
     return (
-        <div className="content-center relative">
+        <div>
             <p className="text-center text-lg pb-1.5">{text}</p>
 
             <div>

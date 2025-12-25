@@ -31,30 +31,30 @@ const ClockComponent = ({ data }: { data: MonitoringData }) => {
         if (!data?.microphone_on) return '';
         return data.microphone_on_time;
     };
-
-    if (!data.spotify.playing) return (
-        <>
-            <div className="flex pt-3 mb-4 justify-center items-center">
-                <CircularProgressBar
-                    selectedValue={time.getSeconds()}
-                    maxValue={60}
-                    activeStrokeColor="#a1fcc6"
-                    inactiveStrokeColor="#636363"
-                    valueFontSize={28}
-                    text={getTime(false)}
-                    text2={getTime(true)}
-                    textColor="#CDD2D5"
-                    radius={150}
-                />
-            </div>
-
-            <div className="flex justify-center items-center pt-1 pb-5">
-                <p className="text-2xl" style={{ color: "#CDD2D5" }}>
-                    {getDate()}
-                </p>
-            </div>
-        </>
-    );
+    //
+    // if (!data.spotify.playing) return (
+    //     <>
+    //         <div className="flex pt-3 mb-4 justify-center items-center">
+    //             <CircularProgressBar
+    //                 selectedValue={time.getSeconds()}
+    //                 maxValue={60}
+    //                 activeStrokeColor="#a1fcc6"
+    //                 inactiveStrokeColor="#636363"
+    //                 valueFontSize={28}
+    //                 text={getTime(false)}
+    //                 text2={getTime(true)}
+    //                 textColor="#CDD2D5"
+    //                 radius={150}
+    //             />
+    //         </div>
+    //
+    //         <div className="flex justify-center items-center pt-1 pb-5">
+    //             <p className="text-2xl" style={{ color: "#CDD2D5" }}>
+    //                 {getDate()}
+    //             </p>
+    //         </div>
+    //     </>
+    // );
 
     return (
         <>

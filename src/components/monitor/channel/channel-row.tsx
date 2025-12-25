@@ -21,7 +21,7 @@ const ChannelRow = ({socket}: {socket: ReturnType<typeof useWebSocket<Monitoring
 	if (!data) return;
 	
 	return (
-		<div className="flex flex-row gap-3 justify-center">
+		<div className="flex flex-row gap-2 justify-center">
 			<ChannelStatus data={data} channel={0} />
 			<ChannelStatus data={data} channel={1} />
 			<ChannelStatus data={data} channel={2} />

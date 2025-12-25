@@ -53,12 +53,12 @@ const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}
 			borderColor: channelData().fader_active && channelData().channel_on ? channelColor() : (channelData().fader_active ? channelColor() : "#242428")
 		}}>
 			<div className="flex flex-col items-center">
-				<p className="text-xs text-muted-foreground pb-1">{channelData().name}</p>
-                <div className="pb-3">
+				<p className="text-xs text-muted-foreground">{channelData().name}</p>
+                <div className="pb-1.5">
                     {channelData().channel_on ? (
-                        <Badge variant={"green"} className="py-1 text-xs">Active</Badge>
+                        <Badge variant={"green"} className="py-0.5 text-[0.65rem]">Active</Badge>
                     ) :
-                        <Badge variant={"destructive"} className="py-1 text-xs">Inactive</Badge>
+                        <Badge variant={"destructive"} className="py-0.5 text-[0.65rem]">Inactive</Badge>
                     }
                 </div>
 
