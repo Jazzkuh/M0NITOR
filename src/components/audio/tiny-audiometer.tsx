@@ -35,7 +35,7 @@ const TinyAudioMeter = ({ text, left, right, balance }: { text: String, left: nu
 
     return (
         <div className="content-center relative">
-            <p className="text-center text-lg pb-1.5">{text}</p>
+            <p className="text-center text-sm pb-1.5">{text}</p>
 
             <div>
                 {/* Minor ticks (every 2 dB) */}
