@@ -24,13 +24,24 @@ export type Fader = {
 }
 
 export type MeteringValues = {
-	program_left: number;
-	program_right: number;
-	phones_left: number;
-	phones_right: number;
-	crm_left: number;
-	crm_right: number;
-}
+    program_left: number;
+    program_right: number;
+    phones_left: number;
+    phones_right: number;
+    crm_left: number;
+    crm_right: number;
+    aux_left: number;
+    aux_right: number;
+    master_left: number;
+    master_right: number;
+    sub_left: number;
+    sub_right: number;
+    studio_left: number;
+    studio_right: number;
+    vt_left: number;
+    vt_right: number;
+};
+
 
 export type Spotify = {
 	track: string;

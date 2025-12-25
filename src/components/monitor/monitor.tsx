@@ -25,6 +25,7 @@ import {
 import {signOut} from "next-auth/react";
 import {LogOut} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
+import TinyAudioMeter from "@/components/audio/tiny-audiometer";
 
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
@@ -111,16 +112,14 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 					</div>
 					
 					<div className="flex flex-row justify-between mt-2">
-						<div className="flex flex-row">
+						<div className="flex flex-row justify-center gap-10">
 							<AudioMeter text="PGM" left={percentage(data.metering.program_left)}
 										right={percentage(data.metering.program_right)}
 										balance={balance(data.metering.program_left, data.metering.program_right)}/>
-							
-							<div className="ml-12">
-								<AudioMeter text="CRM" left={percentage(data.metering.crm_left)}
-											right={percentage(data.metering.crm_right)}
-											balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
-							</div>
+
+                            <AudioMeter text="CRM" left={percentage(data.metering.crm_left)}
+                                        right={percentage(data.metering.crm_right)}
+                                        balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
 						</div>
 						
 						<div className="w-full mx-8 flex flex-col">
@@ -142,10 +141,26 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							</Tabs>
 						</div>
 						
-						<div>
-							<AudioMeter text="PFL" left={percentage(data.metering.phones_left)}
-										right={percentage(data.metering.phones_right)}
-										balance={balance(data.metering.phones_left, data.metering.phones_right)}/>
+						<div className="flex flex-row gap-10">
+                            <div className="flex flex-col justify-center gap-3">
+                                <TinyAudioMeter text="MASTER" left={percentage(data.metering.master_left)}
+                                                right={percentage(data.metering.master_right)}
+                                                balance={balance(data.metering.master_left, data.metering.master_right)}/>
+
+                                <TinyAudioMeter text="AUX" left={percentage(data.metering.aux_left)}
+                                                right={percentage(data.metering.aux_right)}
+                                                balance={balance(data.metering.aux_left, data.metering.aux_right)}/>
+                            </div>
+
+                            <div className="flex flex-col justify-center gap-3">
+
+                                <TinyAudioMeter text="SUB" left={percentage(data.metering.sub_left)}
+                                                right={percentage(data.metering.sub_right)}
+                                                balance={balance(data.metering.sub_left, data.metering.sub_right)}/>
+                                <TinyAudioMeter text="PFL" left={percentage(data.metering.phones_left)}
+                                                right={percentage(data.metering.phones_right)}
+                                                balance={balance(data.metering.phones_left, data.metering.phones_right)}/>
+                            </div>
 						</div>
 					</div>
 				</ContainerContent>

@@ -5,8 +5,12 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export function percentage(value: number) {
-	return 100 - ((value / 55) * 100);
+export function percentage(db: number) {
+    const MIN_DB = -50;
+    const MAX_DB = 5;
+
+    const clamped = Math.min(MAX_DB, Math.max(MIN_DB, db));
+    return ((clamped - MIN_DB) / (MAX_DB - MIN_DB)) * 100;
 }
 
 function getBrightness(hexColor: string) {

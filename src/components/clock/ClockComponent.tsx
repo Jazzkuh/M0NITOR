@@ -5,7 +5,7 @@ import CircularProgressBar from "@/components/clock/CircularProgressBar";
 import moment from "moment";
 import { MonitoringData } from "@/types/monitor";
 
-const AudioMeter = ({ data }: { data: MonitoringData }) => {
+const ClockComponent = ({ data }: { data: MonitoringData }) => {
     const [time, setTime] = useState<Date | null>(null);
 
     useEffect(() => {
@@ -40,16 +40,16 @@ const AudioMeter = ({ data }: { data: MonitoringData }) => {
                     maxValue={60}
                     activeStrokeColor="#a1fcc6"
                     inactiveStrokeColor="#636363"
-                    valueFontSize={32}
+                    valueFontSize={28}
                     text={getTime(false)}
                     text2={getTime(true)}
                     textColor="#CDD2D5"
-                    radius={180}
+                    radius={150}
                 />
             </div>
 
             <div className="flex justify-center items-center pt-1 pb-5">
-                <p className="text-3xl" style={{ color: "#CDD2D5" }}>
+                <p className="text-2xl" style={{ color: "#CDD2D5" }}>
                     {getDate()}
                 </p>
             </div>
@@ -81,4 +81,4 @@ const AudioMeter = ({ data }: { data: MonitoringData }) => {
     );
 };
 
-export default AudioMeter;
+export default ClockComponent;
