@@ -111,8 +111,8 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 					</div>
 					
-					<div className="flex flex-row justify-between mt-2">
-						<div className="flex flex-row justify-center gap-10">
+					<div className="flex flex-row gap-4">
+						<div className="flex flex-row gap-8">
 							<AudioMeter text="PGM" left={percentage(data.metering.program_left)}
 										right={percentage(data.metering.program_right)}
 										balance={balance(data.metering.program_left, data.metering.program_right)}/>
@@ -122,7 +122,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
                                         balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
 						</div>
 						
-						<div className="w-full mx-8 flex flex-col">
+						<div className="w-full flex flex-col">
 							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
 								<TabsList className="w-full bg-sidebar">
 									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>*/}
@@ -141,8 +141,8 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 							</Tabs>
 						</div>
 						
-						<div className="flex flex-row gap-10">
-                            <div className="flex flex-col justify-center gap-3">
+						<div className="flex flex-row gap-8">
+                            <div className="flex flex-col gap-4">
                                 <TinyAudioMeter text="MASTER" left={percentage(data.metering.master_left)}
                                                 right={percentage(data.metering.master_right)}
                                                 balance={balance(data.metering.master_left, data.metering.master_right)}/>
@@ -152,8 +152,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
                                                 balance={balance(data.metering.aux_left, data.metering.aux_right)}/>
                             </div>
 
-                            <div className="flex flex-col justify-center gap-3">
-
+                            <div className="flex flex-col gap-4">
                                 <TinyAudioMeter text="SUB" left={percentage(data.metering.sub_left)}
                                                 right={percentage(data.metering.sub_right)}
                                                 balance={balance(data.metering.sub_left, data.metering.sub_right)}/>
