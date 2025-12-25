@@ -52,8 +52,8 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 		<div className="grid gap-2 pt-2">
 			<Container className="h-full">
 				<ContainerContent>
-					<div className="flex bg-sidebar justify-between w-full mt-2">
-						<div className="flex py-2 px-4 bg-sidebar rounded-md justify-between w-full">
+					<div className="flex bg-sidebar justify-between w-full">
+						<div className="flex py-2 bg-sidebar rounded-md justify-between w-full">
                             <div className="flex flex-row gap-2">
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
@@ -87,16 +87,14 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
                                     </DropdownMenuContent>
                                 </DropdownMenu>
 
-                                <div className="flex flex-col gap-0.5">
+                                <div className="flex flex-row items-center gap-1">
                                     <p className="font-semibold text-xl">M0NITOR</p>
-                                    <p className="text-xs text-muted-foreground">
-                                        Currently monitoring the audio levels of the PGM, CRM and PFL signals.
-                                    </p>
+                                    <p className="text-muted-foreground text-xs mt-1.5">v2-Alpha</p>
                                 </div>
                             </div>
-							
-							<div className="pt-1.5">
-								<div className="flex flex-row gap-3">
+
+							<div className="">
+								<div className="flex flex-row gap-2">
 									<div className="flex flex-row gap-2">
 										{data.microphone_on ? (
 											<Badge variant={"destructive"} className="py-1 text-xs">Mic On</Badge>
