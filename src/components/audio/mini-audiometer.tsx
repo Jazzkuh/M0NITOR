@@ -13,7 +13,7 @@ const TinyAudioMeter = ({ left, right }: { left: number, right: number }) => {
     // Convert dB to vertical position (top) within meter
     const dbToPosition = (db: number) => METER_HEIGHT - (dbToPercent(db) / 100) * METER_HEIGHT;
 
-    const stripes = [0, -10, -20, -30, -40, -50];
+    const stripes = [0, -10, -20, -30, -40, -49.5];
 
     return (
         <div className="flex gap-1">
@@ -78,7 +78,7 @@ const TinyAudioMeter = ({ left, right }: { left: number, right: number }) => {
                             textAlign: 'right',
                         }}
                     >
-                        {db}
+                        {db === -49.5 ? '-50' : db}
                     </div>
                 ))}
             </div>
