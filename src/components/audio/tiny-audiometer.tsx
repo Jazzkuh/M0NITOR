@@ -42,7 +42,7 @@ const TinyAudioMeter = ({ text, left, right, balance }: { text: String, left: nu
                 {Array.from({ length: 28 }).map((_, i) => {
                     const db = 5 - i * 2;
                     if (db % 10 === 0) return null;
-                    if (i >= 27) return null;
+                    if (i >= 26) return null;
                     return getSeparator(dbToY(db));
                 })}
 
@@ -56,7 +56,7 @@ const TinyAudioMeter = ({ text, left, right, balance }: { text: String, left: nu
                 {getLineSeparator(dbToY(-20), "-20")}
                 {getLineSeparator(dbToY(-30), "-30")}
                 {getLineSeparator(dbToY(-40), "-40")}
-                {getLineSeparator(dbToY(-50), "-50")}
+                {getLineSeparator(dbToY(-49.75), "-50")}
 
                 {/* Left meter */}
 
