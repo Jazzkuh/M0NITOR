@@ -21,6 +21,9 @@ export type Fader = {
 	fader_active: boolean;
 	channel_on: boolean;
 	cue_active: boolean;
+    fader_level: number;
+    left: number;
+    right: number;
 }
 
 export type MeteringValues = {

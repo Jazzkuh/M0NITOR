@@ -49,7 +49,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 	)
 	
 	return (
-		<div className="grid gap-2 pt-2">
+		<div className="grid gap-2">
 			<Container className="h-full">
 				<ContainerContent>
 					<div className="flex bg-sidebar justify-between w-full">
@@ -109,15 +109,15 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 					</div>
 					
-					<div className="flex items-center gap-4">
-						<div className="flex flex-row gap-8">
+					<div className="flex flex-row gap-4">
+						<div className="flex flex-row gap-4">
 							<AudioMeter text="PGM" left={percentage(data.metering.program_left)}
 										right={percentage(data.metering.program_right)}
 										balance={balance(data.metering.program_left, data.metering.program_right)}/>
 
-                            <AudioMeter text="CRM" left={percentage(data.metering.crm_left)}
-                                        right={percentage(data.metering.crm_right)}
-                                        balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
+                            <AudioMeter text="MASTER" left={percentage(data.metering.master_left)}
+                                            right={percentage(data.metering.master_right)}
+                                            balance={balance(data.metering.master_left, data.metering.master_right)}/>
 						</div>
 						
 						<div className="w-full flex flex-col">
@@ -126,31 +126,31 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>*/}
 									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
 								</TabsList>
-								
+
 								<ClockComponent data={data}/>
-								
+
 								<TabsContent value="pfl">
 									<PFLRow data={data}/>
 								</TabsContent>
-								
+
 								<TabsContent value="nowplaying">
 									<NowPlayingMini data={data}/>
 								</TabsContent>
 							</Tabs>
 						</div>
 						
-						<div className="flex flex-row gap-8">
-                            <div className="flex flex-col gap-4">
-                                <TinyAudioMeter text="MASTER" left={percentage(data.metering.master_left)}
-                                                right={percentage(data.metering.master_right)}
-                                                balance={balance(data.metering.master_left, data.metering.master_right)}/>
+						<div className="flex flex-row gap-4">
+                            <div className="flex flex-col gap-2">
+                                <TinyAudioMeter text="CRM" left={percentage(data.metering.crm_left)}
+                                            right={percentage(data.metering.crm_right)}
+                                            balance={balance(data.metering.crm_left, data.metering.crm_right)}/>
 
                                 <TinyAudioMeter text="AUX" left={percentage(data.metering.aux_left)}
                                                 right={percentage(data.metering.aux_right)}
                                                 balance={balance(data.metering.aux_left, data.metering.aux_right)}/>
                             </div>
 
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-2">
                                 <TinyAudioMeter text="SUB" left={percentage(data.metering.sub_left)}
                                                 right={percentage(data.metering.sub_right)}
                                                 balance={balance(data.metering.sub_left, data.metering.sub_right)}/>

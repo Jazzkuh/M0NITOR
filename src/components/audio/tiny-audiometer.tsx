@@ -34,7 +34,7 @@ const TinyAudioMeter = ({ text, left, right, balance }: { text: String, left: nu
     }
 
     return (
-        <div className="content-center relative">
+        <div className="w-[88px]">
             <p className="text-center text-sm pb-1.5">{text}</p>
 
             <div>
@@ -79,23 +79,6 @@ const TinyAudioMeter = ({ text, left, right, balance }: { text: String, left: nu
                         }}
                     />
                 </div>
-            </div>
-
-            <div>
-                <input
-                    type="range"
-                    value={balance}
-                    style={{
-                        WebkitBorderRadius: 0,
-                        WebkitBorderBottomRightRadius: 0,
-                        WebkitAppearance: 'none',
-                        width: 89,
-                    }}
-                    className="bg-accent appearance-none disabled meter-range"
-                />
-                <p className="meter-text text-center text-xs general-text" style={{ marginTop: -4.8, marginLeft: -4 }}>-1</p>
-                <p className="meter-text text-center text-xs general-text" style={{ marginTop: -4.8, marginLeft: 40 }}>0</p>
-                <p className="meter-text text-center text-xs general-text" style={{ marginTop: -4.8, marginLeft: 80 }}>+1</p>
             </div>
         </div>
     );
