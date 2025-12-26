@@ -64,9 +64,9 @@ const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}
                 <div className="flex flex-col items-center">
                     <div className="pb-1.5">
                         {channelData().channel_on ? (
-                                <Badge variant={"green"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
+                                <Badge onClick={toggle} variant={"green"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
                             ) :
-                            <Badge variant={"destructive"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
+                            <Badge onClick={toggle} variant={"destructive"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
                         }
                     </div>
 
