@@ -19,11 +19,21 @@ const TinyAudioMeter = ({ left, right }: { left: number, right: number }) => {
         <div className="flex gap-1">
             {/* Meter bar with stripes */}
             <div style={{ position: 'relative', height: METER_HEIGHT }}>
-                <div className="meter-bar" style={{ width: 12, height: METER_HEIGHT }}>
+                <div className="meter-bar" style={{ width: 5, height: METER_HEIGHT }}>
                     <div
                         className="meter-background bg-[#68e178]"
                         style={{
                             height: `${Math.max((left), -30)}%`, // clamp under -30 dB
+                            transition: "height 0.08s linear"
+                        }}
+                    />
+                </div>
+
+                <div className="meter-bar" style={{ width: 5, height: METER_HEIGHT, marginLeft: 2 }}>
+                    <div
+                        className="meter-background bg-[#68e178]"
+                        style={{
+                            height: `${Math.max((right), -30)}%`, // clamp under -30 dB
                             transition: "height 0.08s linear"
                         }}
                     />
