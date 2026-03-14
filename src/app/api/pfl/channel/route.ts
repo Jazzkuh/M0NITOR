@@ -1,25 +1,16 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
-import {getAuthSession} from "@/lib/auth";
+import { getAuthSession } from "@/lib/auth";
+import { daemonGet } from "@/lib/daemon";
 
 export const POST = async (request: Request) => {
-	const session = await getAuthSession();
-	if (!session) {
-		return NextResponse.json(
-			{ success: false, message: "Not authorized" },
-			{ status: 401 }
-		);
-	}
-	
-	const body = await request.json();
-	const data = await axios.get(
-		`http://deamon.jazzkuh.com/pfl/channel/${body.channel}`,
-		{
-			headers: {
-				"X-API-Key": process.env.DEAMON_API_KEY
-			},
-		}
-	);
-	
-	return NextResponse.json(data.data);
+    const session = await getAuthSession();
+    if (!session) return NextResponse.json({ success: false, message: "Not authorized" }, { status: 401 });
+
+    try {
+        const { channel } = await request.json();
+        const data = await daemonGet(`/pfl/channel/${channel}`);
+        return NextResponse.json(data);
+    } catch {
+        return NextResponse.json({ success: false, message: "Daemon unavailable" }, { status: 502 });
+    }
 };

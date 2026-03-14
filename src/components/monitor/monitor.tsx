@@ -8,11 +8,9 @@ import AudioMeter from "@/components/audio/audiometer";
 import {balance, percentage} from "@/lib/utils";
 import ClockComponent from "@/components/clock/ClockComponent";
 import Status from "@/components/monitor/status";
-import PFLRow from "@/components/monitor/pfl/pfl-row";
 import ChannelRow from "@/components/monitor/channel/channel-row";
 import {Badge} from "@/components/ui/badge";
 import NowPlayingMini from "@/components/music/now-playing-mini";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Avatar} from "@/components/ui/avatar";
 import Image from "next/image";
 import * as React from "react";
@@ -30,14 +28,12 @@ import TinyAudioMeter from "@/components/audio/tiny-audiometer";
 const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringData>>}) => {
 	// @ts-ignore
 	const [data, setData] = useState<MonitoringData>(null);
-	const [activeTab, setActiveTab] = useState<string>("nowplaying");
-	
 	useEffect(() => {
 		if (!socket.socket) return;
-		
-		socket.socket.addEventListener("message", (event) => {
-			setData(JSON.parse(event.data));
-		});
+
+		const handler = (event: MessageEvent) => setData(JSON.parse(event.data));
+		socket.socket.addEventListener("message", handler);
+		return () => socket.socket!.removeEventListener("message", handler);
 	}, [socket.socket]);
 
 	if (!data) return (
@@ -121,22 +117,8 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 						</div>
 						
 						<div className="w-full flex flex-col">
-							<Tabs defaultValue="pfl" value={activeTab} onValueChange={setActiveTab} className="w-full">
-								<TabsList className="w-full bg-sidebar">
-									{/*<TabsTrigger className="data-[state=active]:bg-accent" value="pfl">PFL Options</TabsTrigger>*/}
-									<TabsTrigger className="data-[state=active]:bg-accent" value="nowplaying">Now Playing</TabsTrigger>
-								</TabsList>
-
-								<ClockComponent data={data}/>
-
-								<TabsContent value="pfl">
-									<PFLRow data={data}/>
-								</TabsContent>
-
-								<TabsContent value="nowplaying">
-									<NowPlayingMini data={data}/>
-								</TabsContent>
-							</Tabs>
+							<ClockComponent data={data}/>
+							<NowPlayingMini data={data}/>
 						</div>
 						
 						<div className="flex flex-row gap-4">
@@ -163,7 +145,7 @@ const Monitor = ({socket}: {socket: ReturnType<typeof useWebSocket<MonitoringDat
 				</ContainerContent>
 			</Container>
 
-            <ChannelRow socket={socket}/>
+            <ChannelRow data={data}/>
 		</div>
 	);
 };

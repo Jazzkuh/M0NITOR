@@ -4,83 +4,74 @@ import {MonitoringData} from "@/types/monitor";
 import {Button} from "@/components/ui/button";
 import axios from "axios";
 import React from "react";
-import {Badge} from "@/components/ui/badge";
-import MiniAudiometer from "@/components/audio/mini-audiometer";
 
 const ChannelStatus = ({data, channel}: {data: MonitoringData; channel: number;}) => {
 	function channelData() {
 		return data.faders[channel];
 	}
-	
+
 	function toggle() {
 		axios.post("/api/channel", {
 			channel: channel + 1
 		});
 	}
-	
+
 	function pfl() {
 		axios.post("/api/pfl/channel", {
 			channel: channel + 1
 		});
 	}
-	
-	function channelColor() {
-		// if (channel == 0) {
-		// 	return "#ea3b49";
-		// }
-		//
-		return "#68e178";
-	}
-	
-	function getColor(channelOn: boolean, faderActive: boolean) {
-		if (channelOn && faderActive) {
-			return channelColor();
-		}
-		
-		if (faderActive && !channelOn) {
-			return "#242428";
-		}
-		
-		return "#242428";
-	}
 
+	const fader = channelData();
+	const isLive = fader.fader_active && fader.channel_on;
+	const isCued = fader.cue_active;
 
-    function percentage(db: number) {
-        const MIN_DB = -30;
-        const MAX_DB = 5;
+	const accentColor = isCued ? "#fd9c2d" : isLive ? "#68e178" : "rgba(255,255,255,0.12)";
+	const bg = isCued
+		? "rgba(253,156,45,0.08)"
+		: isLive
+		? "rgba(104,225,120,0.07)"
+		: "rgba(255,255,255,0.04)";
 
-        const clamped = Math.min(MAX_DB, Math.max(MIN_DB, db));
-        return ((clamped - MIN_DB) / (MAX_DB - MIN_DB)) * 100;
-    }
+	const levelPct = Math.max(0, Math.min(100, ((fader.fader_level ?? 0) / 1024) * 100));
 
 	return (
-		<div className="rounded-sm bg-sidebar w-full h-full p-1.5 border-b-4 border-t-4" style={{
-			borderColor: channelData().fader_active && channelData().channel_on ? channelColor() : (channelData().fader_active ? channelColor() : "#242428")
-		}}>
-            <div className="flex flex-col items-center pb-1">
-                <p className="text-xs text-muted-foreground">{channelData().name}</p>
-            </div>
-            <div className="flex gap-2">
-                <div className="flex flex-col items-center">
-                    <div className="pb-1.5">
-                        {channelData().channel_on ? (
-                                <Badge onClick={toggle} variant={"green"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
-                            ) :
-                            <Badge onClick={toggle} variant={"destructive"} className="py-0.5 px-4 text-[0.65rem]">ON</Badge>
-                        }
-                    </div>
+		<div className="rounded-md overflow-hidden w-full h-full flex flex-col" style={{ backgroundColor: bg }}>
+			{/* Fader level bar — top accent */}
+			<div style={{ height: 3, backgroundColor: "rgba(255,255,255,0.06)" }}>
+				<div
+					style={{
+						height: "100%",
+						width: `${levelPct}%`,
+						backgroundColor: accentColor,
+						transition: "width 0.1s linear",
+					}}
+				/>
+			</div>
 
-                    <div className="flex flex-row gap-2">
-                        <Button onClick={pfl} size="xs" className="px-4" style={{
-                            backgroundColor: channelData().cue_active ? "#68e178" : "#242428"
-                        }}>PFL</Button>
-                    </div>
-                </div>
+			{/* Content */}
+			<div className="flex flex-col px-2 py-1.5 gap-1.5">
+				<div className="flex items-center gap-1">
+					<div
+						className={`h-1.5 w-1.5 rounded-full flex-shrink-0 ${isLive && !isCued ? "animate-pulse" : ""}`}
+						style={{ backgroundColor: accentColor }}
+					/>
+					<span className="text-xs font-semibold uppercase tracking-wider truncate" style={{ color: accentColor }}>
+						{fader.name}
+					</span>
+				</div>
 
-                <div className="flex-none w-8 h-[114px]">
-                    <MiniAudiometer left={percentage(channelData().left)} right={percentage(channelData().right)}/>
-                </div>
-            </div>
+				<div className="flex flex-row gap-1.5">
+					<Button onClick={toggle} size="xs" className="px-3 flex-1" style={{
+						backgroundColor: fader.channel_on ? "#68e178" : "rgba(255,255,255,0.08)",
+						color: fader.channel_on ? "#000" : "rgba(255,255,255,0.6)",
+					}}>ON</Button>
+					<Button onClick={pfl} size="xs" className="px-3 flex-1" style={{
+						backgroundColor: fader.cue_active ? "#fd9c2d" : "rgba(255,255,255,0.08)",
+						color: fader.cue_active ? "#000" : "rgba(255,255,255,0.6)",
+					}}>PFL</Button>
+				</div>
+			</div>
 		</div>
 	)
 };
