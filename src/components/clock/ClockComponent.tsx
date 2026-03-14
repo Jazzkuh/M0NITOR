@@ -5,7 +5,7 @@ import CircularProgressBar from "@/components/clock/CircularProgressBar";
 import moment from "moment";
 import { MonitoringData } from "@/types/monitor";
 
-const ClockComponent = ({ data }: { data: MonitoringData }) => {
+const ClockComponent = ({ data, radius = 120 }: { data: MonitoringData; radius?: number }) => {
     const [time, setTime] = useState<Date | null>(null);
 
     useEffect(() => {
@@ -64,11 +64,11 @@ const ClockComponent = ({ data }: { data: MonitoringData }) => {
                     maxValue={60}
                     activeStrokeColor="#a1fcc6"
                     inactiveStrokeColor="#636363"
-                    valueFontSize={26}
+                    valueFontSize={Math.round(radius * 0.22)}
                     text={getTime(false)}
                     text2={getTime(true)}
                     textColor="#CDD2D5"
-                    radius={120}
+                    radius={radius}
                 />
             </div>
 
