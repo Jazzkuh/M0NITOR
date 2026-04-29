@@ -19,14 +19,15 @@ import {
     DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
-import { LogOut, Home, Music2, Lightbulb } from "lucide-react";
+import { LogOut, Home, Music, Lightbulb } from "lucide-react";
 import HueScenes from "@/components/hue/hue-scenes";
+import NowPlaying from "@/components/music/now-playing";
 
 type Tab = "home" | "nowplaying" | "hue";
 
 const TABS: { id: Tab; label: string; Icon: React.ComponentType<{ size?: number }> }[] = [
     { id: "home",       label: "Home",        Icon: Home },
-    { id: "nowplaying", label: "Now Playing", Icon: Music2 },
+    { id: "nowplaying", label: "Now Playing", Icon: Music },
     { id: "hue",        label: "Hue",         Icon: Lightbulb },
 ];
 
@@ -109,8 +110,11 @@ const Monitor = ({ socket }: { socket: ReturnType<typeof useWebSocket<Monitoring
                 {/* Card 2: Content */}
                 <Container className="flex-1">
                     <ContainerContent className="py-3 h-full flex flex-col justify-center items-center w-full">
-                        {isHome && <ClockComponent data={data} radius={160} />}
-                        {tab === "nowplaying" && <NowPlayingMini data={data} className="w-full" />}
+                        {isHome && <>
+                            <ClockComponent data={data} radius={160} />
+                            <NowPlayingMini data={data} />
+                        </>}
+                        {tab === "nowplaying" && <NowPlaying data={data} className="w-full" />}
                         {tab === "hue" && <HueScenes />}
                     </ContainerContent>
                 </Container>
